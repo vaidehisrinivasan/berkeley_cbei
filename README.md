@@ -2,7 +2,7 @@
 
 An interactive, scroll-friendly Quarto dashboard that explores modeled **consumption-based greenhouse gas emissions** across **nine Berkeley ZIP codes**. The project visualizes how emissions vary by neighborhood and how patterns differ across major household spending categories.
 
-## What this project does
+## Key features
 
 - Estimates and visualizes consumption-based emissions at the ZIP-code level for Berkeley, California.
 - Uses a scrollytelling layout (Quarto **closeread**) with interactive visuals.
@@ -33,7 +33,7 @@ An interactive, scroll-friendly Quarto dashboard that explores modeled **consump
 - Visualization: `plotly`, `leaflet`, `scales`
 - Data + utilities: `readr`, `readxl`, `janitor`, `here`, `jsonlite`
 
-## Skills demonstrated (what this repo showcases)
+## Skills demonstrated 
 
 - **Data wrangling in R**: cleaning, reshaping, joining, and validating ZIP-level datasets with `tidyverse`.
 - **Census / ACS data retrieval**: pulling ZIP-code-tabulation-area metrics (e.g., income, population) using `tidycensus`.
@@ -42,7 +42,7 @@ An interactive, scroll-friendly Quarto dashboard that explores modeled **consump
 - **Dashboard engineering**: integrating Quarto + Shiny runtime for responsive interactivity.
 - **Front-end polish**: custom CSS for a clean, editorial scrollytelling experience (including local/self-hosted fonts).
 
-## Repository notes (high level)
+## Repository notes 
 
 - A Plotly object-building script exists (e.g., `viz_objects.R`) that constructs interactive visuals such as `pie_chart` and `choropleth`.
 - A cleaned dataset is loaded from a serialized R object (e.g., `cleaned_data.RData`) in the visualization-building workflow.
