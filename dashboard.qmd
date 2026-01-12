@@ -82,7 +82,9 @@ load("cleaned_data.RData")
       A <strong>consumption-based emissions inventory</strong> calculates carbon emissions based on household expenditure patterns,
       regardless of where production occurs. Inspired by the methodology developed by the <a href="https://coolclimate.org/inventory#" target="_blank" rel="noopener">UC Berkeley CoolClimate Network</a>, this project explores
       consumption-based emissions across nine ZIP codes in Berkeley, California. <br>
-           <br> This project constructs consumption-based emissions inventory (CBEI) for Berkeley using modeled estimates based on publicly available data. All data sources, assumptions, and modeling choices are documented in a Technical Note.
+           <br> This project builds a consumption-based emissions inventory (CBEI) for Berkeley using modeled estimates derived from publicly available data. Data sources, assumptions, and modeling choices are documented in a <a href="technical_note/Technical_Note.pdf">Technical Note (PDF)</a>.
+
+
     </p>
   </div>
 </section>
@@ -325,12 +327,12 @@ distance_mean
 
   <div class="footer" style="padding: 2rem 2rem 4rem 2rem; text-align:center; font-family:sans-serif; color:#666; font-size: 0.9rem; border-top: 1px solid #eee; background-color: white;">
     
-    <p style="margin-bottom: 0.5rem;">
-      <strong>Designed & Developed by Vaidehi Srinivasan</strong>
-    </p>
+  <p style="margin-bottom: 0.5rem;">
+    <strong>Designed &amp; Developed by <a href="https://www.linkedin.com/in/vaidehi-srinivasan/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Vaidehi Srinivasan</a></strong>
+  </p>
     
     <p style="margin-bottom: 1.5rem;">
-      <a href="YOUR_GITHUB_URL_HERE" target="_blank" style="color:inherit; text-decoration:underline; font-size: 0.85rem;">View Source Code on GitHub</a>
+      <a href="https://github.com/vaidehisrinivasan/berkeley_cbei.git" target="_blank" style="color:inherit; text-decoration:underline; font-size: 0.85rem;">View Source Code on GitHub</a>
     </p>
     
     <p style="margin-bottom: 1.5rem; font-size: 0.85rem;">
