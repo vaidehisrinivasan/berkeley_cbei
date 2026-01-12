@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-01-01">
+
+<title>dashboard</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+
+
+<script src="dashboard_files/libs/clipboard/clipboard.min.js"></script>
+<script src="dashboard_files/libs/quarto-html/tabby.min.js"></script>
+<script src="dashboard_files/libs/quarto-html/popper.min.js"></script>
+<script src="dashboard_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="dashboard_files/libs/quarto-html/anchor.min.js"></script>
+<link href="dashboard_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="dashboard_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="dashboard_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="dashboard_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="dashboard_files/libs/quarto-contrib/intersection-observer-polyfill-1.0.0/intersection-observer.js"></script>
+<script src="dashboard_files/libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
+<script src="dashboard_files/libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
+<script src="dashboard_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="dashboard_files/libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="dashboard_files/libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="dashboard_files/libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="dashboard_files/libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="dashboard_files/libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="dashboard_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="dashboard_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="dashboard_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<meta cr-debug-mode="false">
+<meta cr-remove-header-space="false">
+
+
+<link rel="stylesheet" href="_extensions/qmd-lab/closeread/closeread.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+      <!-- user-provided yaml closeread style options -->
+      <style>
+        :root {
+          --cr-section-background-color: #ffffff;
+--cr-narrative-background-color-sidebar: #ffffff;
+--cr-narrative-text-color-sidebar: #111111;
+        }
+      </style>
+    
+
+<header id="title-block-header">
+
+
+<p class="date">2026-01-01</p>
+</header>
+
+
+<style>
+  .cr-section .narrative {
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 25vh;
+  }
+</style>
+<div class="hero">
+<section id="consumption-based-emissions-in-berkeley-california" class="hero-title hero-text">
+<h1 class="hero-title">Consumption-Based Emissions in Berkeley, California</h1>
+<p><span class="hero-subtitle">A scroll-friendly, interactive dashboard by Vaidehi Srinivasan</span> <br></p>
+</section>
+<div class="scroll-indicator">
+↓
+</div>
+<div class="hero-credit">
+<p>Image: <a href="https://commons.wikimedia.org/wiki/File:Berkeley_Lights_-_Flickr_-_Joe_Parks.jpg" target="_blank">“Berkeley Lights”</a> by Joe Parks (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank">CC BY 2.0</a>)</p>
+</div>
+</div>
+<section class="fullframe" style="min-height:100vh;display:flex;align-items:center;width:100%;">
+<div style="max-width:70ch;width:100%;margin:0 auto;padding:0 8vw;text-align:center;">
+    <h2 class="anchored">What are consumption-based emissions?</h2>
+    <p>
+      Many governments calculate the carbon footprint of a region by measuring emissions generated within distinct geographic boundaries.
+      In a globalized economy, however, production and consumption are geographically separated: the goods and services households rely on
+      are often produced far from where they are consumed.
+    </p>
+  </div>
+</section>
+
+<section class="fullframe" style="min-height:100vh;display:flex;align-items:center;width:100%;">
+<div style="max-width:70ch;width:100%;margin:0 auto;padding:0 8vw;text-align:center;">
+    <p>
+      A <strong>consumption-based emissions inventory</strong> calculates carbon emissions based on household expenditure patterns,
+      regardless of where production occurs. Inspired by the methodology developed by the <a href="https://coolclimate.org/inventory#" target="_blank" rel="noopener">UC Berkeley CoolClimate Network</a>, this project explores
+      consumption-based emissions across nine ZIP codes in Berkeley, California. <br>
+           <br> This project constructs consumption-based emissions inventory (CBEI) for Berkeley using modeled estimates based on publicly available data. All data sources, assumptions, and modeling choices are documented in a Technical Note.
+    </p>
+  </div>
+</section>
+
+
+<div style="height:6vh;"></div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-pie_view">
+<div class="narrative">
+<p>Household consumption contributes to carbon emissions through five major categories of spending.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-pie_view">
+<div class="narrative">
+<p>The five slices combine 26 individual components, aiming to capture nearly all consumption-based emissions within a city.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-pie_view">
+<div class="narrative">
+<p>Some categories reflect direct energy use (especially housing and personal transport), while others reflect “embodied emissions” in supply chains.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-pie_view">
+<div class="narrative">
+<p>Identifying Berkeley’s opportunities for reduction requires a closer look at the specific behaviors and infrastructures dominating each category.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-pie_view" class="sticky">
+<h2 id="where-do-consumption-based-emissions-come-from" class="anchored">Where do consumption-based emissions come from?</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-50d41b515b50d6e02353" style="width:100%;height:650px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-50d41b515b50d6e02353">{"x":{"visdat":{"38ce953416b244":["function () ","plotlyVisDat"]},"cur_data":"38ce953416b244","attrs":{"38ce953416b244":{"labels":{},"values":{},"sort":false,"direction":"clockwise","domain":{"y":[0.12,1]},"autosize":false,"textinfo":"label+percent","textposition":"inside","insidetextorientation":"horizontal","textfont":{"family":"Inter, Helvetica, Arial, sans-serif","size":15,"color":"white"},"marker":{"colors":["#1F78B4","#D73027","#33A02C","#FF7F00","#6A3D9A"],"line":{"color":"white","width":1}},"pull":[0,0,0,0,0],"hoverinfo":"text","text":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"width":600,"height":600,"margin":{"b":50,"l":80,"t":50,"r":80},"title":{"x":0.5,"xanchor":"center"},"showlegend":false,"annotations":[{"x":1,"y":0.029999999999999999,"xref":"paper","yref":"paper","xanchor":"right","yanchor":"bottom","text":"ZIP code 94720 (UC Berkeley campus) is excluded due to limited household data availability.","showarrow":false,"font":{"size":11,"color":"#666666"},"align":"right"}],"font":{"family":"Inter, Helvetica, Arial, sans-serif","color":"#222222"},"hoverlabel":{"bgcolor":"rgba(255,255,255,0.96)","bordercolor":"#CCCCCC","font":{"family":"Inter, Helvetica, Arial, sans-serif","size":12,"color":"#222222"},"align":"left"},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"labels":["<b>Transportation<\/b>","<b>Housing<\/b>","<b>Food<\/b>","<b>Goods<\/b>","<b>Services<\/b>"],"values":[27.983128967925992,25.299014944031683,19.44569445981594,14.382210909449093,12.889950718777293],"sort":false,"direction":"clockwise","domain":{"y":[0.12,1]},"autosize":false,"textinfo":"label+percent","textposition":["inside","inside","inside","inside","inside"],"insidetextorientation":"horizontal","textfont":{"family":"Inter, Helvetica, Arial, sans-serif","size":15,"color":"white"},"marker":{"color":"rgba(31,119,180,1)","colors":["#1F78B4","#D73027","#33A02C","#FF7F00","#6A3D9A"],"line":{"color":"white","width":1}},"pull":[0,0,0,0,0],"hoverinfo":["text","text","text","text","text"],"text":["<b>Transportation<\/b><br><span style='color:#1F78B4;'>↓ 1.6 percentage points<\/span> vs. the average U.S. household","<b>Housing<\/b><br><span style='color:#1F78B4;'>↓ 6.7 percentage points<\/span> vs. the average U.S. household","<b>Food<\/b><br><span style='color:#8B0000;'>↑ 1 percentage points<\/span> vs. the average U.S. household","<b>Goods<\/b><br><span style='color:#8B0000;'>↑ 5.4 percentage points<\/span> vs. the average U.S. household","<b>Services<\/b><br><span style='color:#8B0000;'>↑ 1.9 percentage points<\/span> vs. the average U.S. household"],"type":"pie","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-highlight_transport">
+<div class="narrative">
+<p>Transportation is the single largest source of emissions in Berkeley. Despite high rates of EV adoption and a cultural shift toward active commuting, heavy emissions generated by personal cars and long-distance air travel still persist.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-highlight_transport">
+<div class="narrative">
+<p>The reliance on personal vehicles is exacerbated by a post-pandemic crisis in public transit. With the Bay Area’s regional ridership stagnating, the system faces a looming “fiscal cliff.”</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-highlight_transport">
+<div class="narrative">
+<p>Results suggest that decarbonizing this sector requires a dual approach: sustaining local momentum on active travel and electrification, while stabilizing the regional transit networks necessary to displace high-emission trips.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-highlight_transport" class="sticky">
+<h2 id="transportation-28-how-we-move" class="anchored">Transportation (28%): How We Move</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-6d4d2c5534a3e43d6dc3" style="width:100%;height:650px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6d4d2c5534a3e43d6dc3">{"x":{"visdat":{"38ce953a908974":["function () ","plotlyVisDat"]},"cur_data":"38ce953a908974","attrs":{"38ce953a908974":{"labels":{},"values":{},"sort":false,"direction":"clockwise","domain":{"y":[0.12,1]},"autosize":false,"textinfo":"label+percent","textposition":"inside","insidetextorientation":"horizontal","textfont":{"family":"Inter, Helvetica, Arial, sans-serif","size":15,"color":"white"},"marker":{"colors":["function (..., .default = col_guess()) ","{","    if (edition_first()) {","        col_types <- list(...)","        is_character <- vapply(col_types, is.character, logical(1))","        col_types[is_character] <- lapply(col_types[is_character], ","            col_concise)","        if (is.character(.default)) {","            .default <- col_concise(.default)","        }","        return(col_spec(col_types, .default))","    }","    vroom::cols(..., .default = .default)","}"],"line":{"color":"white","width":1}},"pull":["function (.data, var = -1, name = NULL, ...) ","{","    check_dots_used()","    UseMethod(\"pull\")","}"],"hoverinfo":"text","text":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"width":600,"height":600,"margin":{"b":50,"l":80,"t":50,"r":80},"title":{"x":0.5,"xanchor":"center"},"showlegend":false,"annotations":[{"x":1,"y":0.029999999999999999,"xref":"paper","yref":"paper","xanchor":"right","yanchor":"bottom","text":"ZIP code 94720 (UC Berkeley campus) is excluded due to limited household data availability.","showarrow":false,"font":{"size":11,"color":"#666666"},"align":"right"}],"font":{"family":"Inter, Helvetica, Arial, sans-serif","color":"#222222"},"hoverlabel":{"bgcolor":"rgba(255,255,255,0.96)","bordercolor":"#CCCCCC","font":{"family":"Inter, Helvetica, Arial, sans-serif","size":12,"color":"#222222"},"align":"left"},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"labels":["<b>Transportation<\/b>","<b>Housing<\/b>","<b>Food<\/b>","<b>Goods<\/b>","<b>Services<\/b>"],"values":[27.983128967925992,25.299014944031683,19.44569445981594,14.382210909449093,12.889950718777293],"sort":false,"direction":"clockwise","domain":{"y":[0.12,1]},"autosize":false,"textinfo":"label+percent","textposition":["inside","inside","inside","inside","inside"],"insidetextorientation":"horizontal","textfont":{"family":"Inter, Helvetica, Arial, sans-serif","size":15,"color":"white"},"marker":{"color":"rgba(31,119,180,1)","colors":["structure(function (..., .default = col_guess()) ","{","    if (edition_first()) {","        col_types <- list(...)","        is_character <- vapply(col_types, is.character, logical(1))","        col_types[is_character] <- lapply(col_types[is_character], ","            col_concise)","        if (is.character(.default)) {","            .default <- col_concise(.default)","        }","        return(col_spec(col_types, .default))","    }","    vroom::cols(..., .default = .default)","}, apiSrc = TRUE)"],"line":{"color":"white","width":1}},"pull":["function (.data, var = -1, name = NULL, ...) ","{","    check_dots_used()","    UseMethod(\"pull\")","}"],"hoverinfo":["text","text","text","text","text"],"text":["<b>Transportation<\/b><br><span style='color:#1F78B4;'>↓ 1.6 percentage points<\/span> vs. the average U.S. household","<b>Housing<\/b><br><span style='color:#1F78B4;'>↓ 6.7 percentage points<\/span> vs. the average U.S. household","<b>Food<\/b><br><span style='color:#8B0000;'>↑ 1 percentage points<\/span> vs. the average U.S. household","<b>Goods<\/b><br><span style='color:#8B0000;'>↑ 5.4 percentage points<\/span> vs. the average U.S. household","<b>Services<\/b><br><span style='color:#8B0000;'>↑ 1.9 percentage points<\/span> vs. the average U.S. household"],"type":"pie","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-highlight_housing">
+<div class="narrative">
+<p>Housing is the second biggest contributor of consumption-based emissions in Berkeley. This sector is dominated by the direct combustion of natural gas, with methane-powered water and space heaters ranking as the two largest individual sources of household carbon output.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-highlight_housing">
+<div class="narrative">
+<p>Data indicates that older homes frequently generate disproportionately higher emissions, driven by a combination of less efficient thermal insulation and a reliance on outdated appliances.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-highlight_housing">
+<div class="narrative">
+<p>Consequently, the path to lowering housing emissions relies heavily on infrastructure upgrades. Replacing legacy gas systems with modern electric heat pumps and improving building envelopes offers the most significant opportunity to decouple home comfort from carbon intensity.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-highlight_housing" class="sticky">
+<h2 id="housing-25.3-powering-our-homes" class="anchored">Housing (25.3%): Powering Our Homes</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-24fb266eff5783a13b62" style="width:100%;height:650px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-24fb266eff5783a13b62">{"x":{"visdat":{"38ce956671823e":["function () ","plotlyVisDat"]},"cur_data":"38ce956671823e","attrs":{"38ce956671823e":{"labels":{},"values":{},"sort":false,"direction":"clockwise","domain":{"y":[0.12,1]},"autosize":false,"textinfo":"label+percent","textposition":"inside","insidetextorientation":"horizontal","textfont":{"family":"Inter, Helvetica, Arial, sans-serif","size":15,"color":"white"},"marker":{"colors":["function (..., .default = col_guess()) ","{","    if (edition_first()) {","        col_types <- list(...)","        is_character <- vapply(col_types, is.character, logical(1))","        col_types[is_character] <- lapply(col_types[is_character], ","            col_concise)","        if (is.character(.default)) {","            .default <- col_concise(.default)","        }","        return(col_spec(col_types, .default))","    }","    vroom::cols(..., .default = .default)","}"],"line":{"color":"white","width":1}},"pull":["function (.data, var = -1, name = NULL, ...) ","{","    check_dots_used()","    UseMethod(\"pull\")","}"],"hoverinfo":"text","text":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"width":600,"height":600,"margin":{"b":50,"l":80,"t":50,"r":80},"title":{"x":0.5,"xanchor":"center"},"showlegend":false,"annotations":[{"x":1,"y":0.029999999999999999,"xref":"paper","yref":"paper","xanchor":"right","yanchor":"bottom","text":"ZIP code 94720 (UC Berkeley campus) is excluded due to limited household data availability.","showarrow":false,"font":{"size":11,"color":"#666666"},"align":"right"}],"font":{"family":"Inter, Helvetica, Arial, sans-serif","color":"#222222"},"hoverlabel":{"bgcolor":"rgba(255,255,255,0.96)","bordercolor":"#CCCCCC","font":{"family":"Inter, Helvetica, Arial, sans-serif","size":12,"color":"#222222"},"align":"left"},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"labels":["<b>Transportation<\/b>","<b>Housing<\/b>","<b>Food<\/b>","<b>Goods<\/b>","<b>Services<\/b>"],"values":[27.983128967925992,25.299014944031683,19.44569445981594,14.382210909449093,12.889950718777293],"sort":false,"direction":"clockwise","domain":{"y":[0.12,1]},"autosize":false,"textinfo":"label+percent","textposition":["inside","inside","inside","inside","inside"],"insidetextorientation":"horizontal","textfont":{"family":"Inter, Helvetica, Arial, sans-serif","size":15,"color":"white"},"marker":{"color":"rgba(31,119,180,1)","colors":["structure(function (..., .default = col_guess()) ","{","    if (edition_first()) {","        col_types <- list(...)","        is_character <- vapply(col_types, is.character, logical(1))","        col_types[is_character] <- lapply(col_types[is_character], ","            col_concise)","        if (is.character(.default)) {","            .default <- col_concise(.default)","        }","        return(col_spec(col_types, .default))","    }","    vroom::cols(..., .default = .default)","}, apiSrc = TRUE)"],"line":{"color":"white","width":1}},"pull":["function (.data, var = -1, name = NULL, ...) ","{","    check_dots_used()","    UseMethod(\"pull\")","}"],"hoverinfo":["text","text","text","text","text"],"text":["<b>Transportation<\/b><br><span style='color:#1F78B4;'>↓ 1.6 percentage points<\/span> vs. the average U.S. household","<b>Housing<\/b><br><span style='color:#1F78B4;'>↓ 6.7 percentage points<\/span> vs. the average U.S. household","<b>Food<\/b><br><span style='color:#8B0000;'>↑ 1 percentage points<\/span> vs. the average U.S. household","<b>Goods<\/b><br><span style='color:#8B0000;'>↑ 5.4 percentage points<\/span> vs. the average U.S. household","<b>Services<\/b><br><span style='color:#8B0000;'>↑ 1.9 percentage points<\/span> vs. the average U.S. household"],"type":"pie","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-highlight_food">
+<div class="narrative">
+<p>Food consumption creates nearly 20% of the city’s carbon footprint, a figure that exceeds the emissions from all physical goods, such as clothing and furniture, combined. This category captures the full lifecycle of nutrition, combining the often-invisible carbon costs of overlooked factors such as agricultural land use and fertilizer production.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-highlight_food">
+<div class="narrative">
+<p>The intensity of these emissions is heavily driven by dietary composition rather than transportation distance. Animal-based products, particularly red meat and dairy, have a disproportionately high carbon footprint due to methane emissions from livestock. As a result, the types of calories consumed often matter more for the climate than where they were grown.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-highlight_food">
+<div class="narrative">
+<p>Beyond diet choice, a significant portion of this footprint comes from food that is never consumed. Emissions embedded in spoilage and food waste represent a “double loss”: wasting the energy used for production and generating additional methane in landfills.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-highlight_food" class="sticky">
+<h2 id="food-19.4-what-we-eat" class="anchored">Food (19.4%): What We Eat</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-8dd7c9510d4ade408f30" style="width:100%;height:650px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8dd7c9510d4ade408f30">{"x":{"visdat":{"38ce9512164237":["function () ","plotlyVisDat"]},"cur_data":"38ce9512164237","attrs":{"38ce9512164237":{"labels":{},"values":{},"sort":false,"direction":"clockwise","domain":{"y":[0.12,1]},"autosize":false,"textinfo":"label+percent","textposition":"inside","insidetextorientation":"horizontal","textfont":{"family":"Inter, Helvetica, Arial, sans-serif","size":15,"color":"white"},"marker":{"colors":["function (..., .default = col_guess()) ","{","    if (edition_first()) {","        col_types <- list(...)","        is_character <- vapply(col_types, is.character, logical(1))","        col_types[is_character] <- lapply(col_types[is_character], ","            col_concise)","        if (is.character(.default)) {","            .default <- col_concise(.default)","        }","        return(col_spec(col_types, .default))","    }","    vroom::cols(..., .default = .default)","}"],"line":{"color":"white","width":1}},"pull":["function (.data, var = -1, name = NULL, ...) ","{","    check_dots_used()","    UseMethod(\"pull\")","}"],"hoverinfo":"text","text":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"width":600,"height":600,"margin":{"b":50,"l":80,"t":50,"r":80},"title":{"x":0.5,"xanchor":"center"},"showlegend":false,"annotations":[{"x":1,"y":0.029999999999999999,"xref":"paper","yref":"paper","xanchor":"right","yanchor":"bottom","text":"ZIP code 94720 (UC Berkeley campus) is excluded due to limited household data availability.","showarrow":false,"font":{"size":11,"color":"#666666"},"align":"right"}],"font":{"family":"Inter, Helvetica, Arial, sans-serif","color":"#222222"},"hoverlabel":{"bgcolor":"rgba(255,255,255,0.96)","bordercolor":"#CCCCCC","font":{"family":"Inter, Helvetica, Arial, sans-serif","size":12,"color":"#222222"},"align":"left"},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"labels":["<b>Transportation<\/b>","<b>Housing<\/b>","<b>Food<\/b>","<b>Goods<\/b>","<b>Services<\/b>"],"values":[27.983128967925992,25.299014944031683,19.44569445981594,14.382210909449093,12.889950718777293],"sort":false,"direction":"clockwise","domain":{"y":[0.12,1]},"autosize":false,"textinfo":"label+percent","textposition":["inside","inside","inside","inside","inside"],"insidetextorientation":"horizontal","textfont":{"family":"Inter, Helvetica, Arial, sans-serif","size":15,"color":"white"},"marker":{"color":"rgba(31,119,180,1)","colors":["structure(function (..., .default = col_guess()) ","{","    if (edition_first()) {","        col_types <- list(...)","        is_character <- vapply(col_types, is.character, logical(1))","        col_types[is_character] <- lapply(col_types[is_character], ","            col_concise)","        if (is.character(.default)) {","            .default <- col_concise(.default)","        }","        return(col_spec(col_types, .default))","    }","    vroom::cols(..., .default = .default)","}, apiSrc = TRUE)"],"line":{"color":"white","width":1}},"pull":["function (.data, var = -1, name = NULL, ...) ","{","    check_dots_used()","    UseMethod(\"pull\")","}"],"hoverinfo":["text","text","text","text","text"],"text":["<b>Transportation<\/b><br><span style='color:#1F78B4;'>↓ 1.6 percentage points<\/span> vs. the average U.S. household","<b>Housing<\/b><br><span style='color:#1F78B4;'>↓ 6.7 percentage points<\/span> vs. the average U.S. household","<b>Food<\/b><br><span style='color:#8B0000;'>↑ 1 percentage points<\/span> vs. the average U.S. household","<b>Goods<\/b><br><span style='color:#8B0000;'>↑ 5.4 percentage points<\/span> vs. the average U.S. household","<b>Services<\/b><br><span style='color:#8B0000;'>↑ 1.9 percentage points<\/span> vs. the average U.S. household"],"type":"pie","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-highlight_goods_services">
+<div class="narrative">
+<p>This category captures the “embodied emissions” of modern life, representing a massive 27.3% share of the total footprint. It aggregates the energy required to mine, manufacture, transport, and sell physical items with the often-overlooked carbon intensity of services, including healthcare, finance, and entertainment.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-highlight_goods_services">
+<div class="narrative">
+<p>Emissions from this sector tend to scale linearly with income. In affluent communities like Berkeley, higher purchasing power typically translates into higher consumption volumes, meaning residents are effectively “outsourcing” pollution to the industrial regions where these goods are manufactured.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-highlight_goods_services">
+<div class="narrative">
+<p>Because these emissions are baked into the production process before a product even reaches the shelf, reducing this wedge requires a shift in consumer culture. Mitigation strategies focus on the “circular economy”: extending the lifespan of products, prioritizing repair over replacement, and shifting spending habits away from material accumulation.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-highlight_goods_services" class="sticky">
+<h2 id="goods-services-27.3-everything-we-buy" class="anchored">Goods &amp; Services (27.3%): Everything We Buy</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-c3fe4c6c4b903c81126c" style="width:100%;height:650px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c3fe4c6c4b903c81126c">{"x":{"visdat":{"38ce95893f56":["function () ","plotlyVisDat"]},"cur_data":"38ce95893f56","attrs":{"38ce95893f56":{"labels":{},"values":{},"sort":false,"direction":"clockwise","domain":{"y":[0.12,1]},"autosize":false,"textinfo":"label+percent","textposition":"inside","insidetextorientation":"horizontal","textfont":{"family":"Inter, Helvetica, Arial, sans-serif","size":15,"color":"white"},"marker":{"colors":["function (..., .default = col_guess()) ","{","    if (edition_first()) {","        col_types <- list(...)","        is_character <- vapply(col_types, is.character, logical(1))","        col_types[is_character] <- lapply(col_types[is_character], ","            col_concise)","        if (is.character(.default)) {","            .default <- col_concise(.default)","        }","        return(col_spec(col_types, .default))","    }","    vroom::cols(..., .default = .default)","}"],"line":{"color":"white","width":1}},"pull":["function (.data, var = -1, name = NULL, ...) ","{","    check_dots_used()","    UseMethod(\"pull\")","}"],"hoverinfo":"text","text":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie"}},"layout":{"width":600,"height":600,"margin":{"b":50,"l":80,"t":50,"r":80},"title":{"x":0.5,"xanchor":"center"},"showlegend":false,"annotations":[{"x":1,"y":0.029999999999999999,"xref":"paper","yref":"paper","xanchor":"right","yanchor":"bottom","text":"ZIP code 94720 (UC Berkeley campus) is excluded due to limited household data availability.","showarrow":false,"font":{"size":11,"color":"#666666"},"align":"right"}],"font":{"family":"Inter, Helvetica, Arial, sans-serif","color":"#222222"},"hoverlabel":{"bgcolor":"rgba(255,255,255,0.96)","bordercolor":"#CCCCCC","font":{"family":"Inter, Helvetica, Arial, sans-serif","size":12,"color":"#222222"},"align":"left"},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"labels":["<b>Transportation<\/b>","<b>Housing<\/b>","<b>Food<\/b>","<b>Goods<\/b>","<b>Services<\/b>"],"values":[27.983128967925992,25.299014944031683,19.44569445981594,14.382210909449093,12.889950718777293],"sort":false,"direction":"clockwise","domain":{"y":[0.12,1]},"autosize":false,"textinfo":"label+percent","textposition":["inside","inside","inside","inside","inside"],"insidetextorientation":"horizontal","textfont":{"family":"Inter, Helvetica, Arial, sans-serif","size":15,"color":"white"},"marker":{"color":"rgba(31,119,180,1)","colors":["structure(function (..., .default = col_guess()) ","{","    if (edition_first()) {","        col_types <- list(...)","        is_character <- vapply(col_types, is.character, logical(1))","        col_types[is_character] <- lapply(col_types[is_character], ","            col_concise)","        if (is.character(.default)) {","            .default <- col_concise(.default)","        }","        return(col_spec(col_types, .default))","    }","    vroom::cols(..., .default = .default)","}, apiSrc = TRUE)"],"line":{"color":"white","width":1}},"pull":["function (.data, var = -1, name = NULL, ...) ","{","    check_dots_used()","    UseMethod(\"pull\")","}"],"hoverinfo":["text","text","text","text","text"],"text":["<b>Transportation<\/b><br><span style='color:#1F78B4;'>↓ 1.6 percentage points<\/span> vs. the average U.S. household","<b>Housing<\/b><br><span style='color:#1F78B4;'>↓ 6.7 percentage points<\/span> vs. the average U.S. household","<b>Food<\/b><br><span style='color:#8B0000;'>↑ 1 percentage points<\/span> vs. the average U.S. household","<b>Goods<\/b><br><span style='color:#8B0000;'>↑ 5.4 percentage points<\/span> vs. the average U.S. household","<b>Services<\/b><br><span style='color:#8B0000;'>↑ 1.9 percentage points<\/span> vs. the average U.S. household"],"type":"pie","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-map_full">
+<div class="narrative">
+<p><strong>A City of Contrasts</strong><br>
+While citywide average shares give us important context, aggregate figures often distort the reality we see on the ground. When we map household emissions by neighborhood, it becomes clear that the overall carbon footprint is not shared equally across Berkeley. Consumption patterns systematically vary, shaping overall emissions.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-map_full">
+<div class="narrative">
+<p><strong>Lower Emissions Zones</strong><br>
+In denser neighborhoods like <strong>ZIP 94704</strong> (Downtown/Southside), per-capita emissions drop to around <strong>5,200 kg CO₂e</strong>. Homes in this neighborhood were built in the 1950s or later, and majority of residents walk or bike to work. This neighborhood also uses public transport to reach work more than almost anywhere in the country!</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-map_full">
+<div class="narrative">
+<p><strong>Higher Emissions Zones</strong><br>
+In contrast, areas like <strong>ZIP 94708</strong> (The Hills) see emissions rise to nearly <strong>24,000 kg CO₂e</strong> per person—more than four times higher. Homes in this neighborhood were primarily built in the 1940s or earlier, having higher operational carbon emissions. Additionally, only 8% of residents opt for public transport to reach their workplace, with majority of the rest driving personal cars or working from home.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-map_full">
+<div class="narrative">
+<p><strong>The Underlying Driver</strong><br>
+These spatial patterns mirror a deeper economic reality. When we shift our focus from neighborhoods to demographics, a clear correlation emerges between purchasing power and carbon intensity.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-map_full" class="sticky">
+<h2 id="are-these-emissions-uniform-across-berkeley" class="anchored">Are these emissions uniform across Berkeley?</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-8ccce5f2c8f7c71ba7ad" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8ccce5f2c8f7c71ba7ad">{"x":{"visdat":{"38ce957b5429b":["function () ","plotlyVisDat"]},"cur_data":"38ce957b5429b","attrs":{"38ce957b5429b":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"choropleth","geojson":{"type":"FeatureCollection","name":"file38ce957de3ce96","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"ZCTA5CE20":"94707","AFFGEOID20":"860Z200US94707","GEOID20":"94707","NAME20":"94707","LSAD20":"Z5","ALAND20":4563750,"AWATER20":0,"emissions_total":280835128.48320001,"population":12596,"emissions_pc":22295.58022254684,"median_household_income":186579,"income_group":"$150,000 to $199,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.29104100000001,37.904153000000001],[-122.288456,37.905622999999999],[-122.289055,37.909075999999999],[-122.287181,37.909913000000003],[-122.28780500000001,37.911335000000001],[-122.289084,37.914253000000002],[-122.288043,37.914985000000001],[-122.284705,37.917372999999998],[-122.282552,37.918903],[-122.28120699999999,37.918697000000002],[-122.28016,37.917690999999998],[-122.27900200000001,37.916594000000003],[-122.278502,37.915322000000003],[-122.27892900000001,37.915191999999998],[-122.28138800000001,37.913232000000001],[-122.279943,37.911284999999999],[-122.28018899999999,37.910567],[-122.28055000000001,37.910119000000002],[-122.28046999999999,37.908234999999998],[-122.27937,37.906919000000002],[-122.278784,37.907549000000003],[-122.27791499999999,37.906022999999998],[-122.27754,37.904497999999997],[-122.277545,37.903978000000002],[-122.27796600000001,37.903337000000001],[-122.27786999999999,37.903149999999997],[-122.274463,37.904214000000003],[-122.27431199999999,37.903627],[-122.27279,37.904195000000001],[-122.270871,37.901380000000003],[-122.270177,37.901533000000001],[-122.269734,37.902104999999999],[-122.26916300000001,37.901528999999996],[-122.26987200000001,37.899959000000003],[-122.26853,37.89479],[-122.267737,37.893130999999997],[-122.266814,37.893104000000001],[-122.267084,37.890371000000002],[-122.267174,37.890428],[-122.266715,37.888744000000003],[-122.26590299999999,37.886431000000002],[-122.265503,37.886186000000002],[-122.266609,37.886035],[-122.26997799999999,37.885603000000003],[-122.272876,37.885655],[-122.27454299999999,37.884895],[-122.274963,37.885340999999997],[-122.275673,37.884754999999998],[-122.280287,37.882438],[-122.281976,37.881605999999998],[-122.281762,37.880555999999999],[-122.283053,37.881045999999998],[-122.282678,37.881248999999997],[-122.282918,37.882511000000001],[-122.281971,37.884574999999998],[-122.28094400000001,37.884965999999999],[-122.280452,37.885762999999997],[-122.282411,37.886293000000002],[-122.284357,37.887014000000001],[-122.283114,37.888682000000003],[-122.284468,37.891061999999998],[-122.285701,37.891005999999997],[-122.287047,37.890917999999999],[-122.286963,37.892809],[-122.286788,37.896548000000003],[-122.286693,37.898513000000001],[-122.28715099999999,37.898367999999998],[-122.28708899999999,37.899560999999999],[-122.288053,37.899312000000002],[-122.28865,37.903596],[-122.29104100000001,37.904153000000001]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94709","AFFGEOID20":"860Z200US94709","GEOID20":"94709","NAME20":"94709","LSAD20":"Z5","ALAND20":1749787,"AWATER20":0,"emissions_total":137587834.84800002,"population":12200,"emissions_pc":11277.691380983608,"median_household_income":84965,"income_group":"$70,000 to $99,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.27551,37.873376],[-122.273332,37.873986000000002],[-122.273357,37.874215999999997],[-122.273574,37.875979999999998],[-122.273791,37.875948000000001],[-122.274119,37.877740000000003],[-122.273746,37.877788000000002],[-122.273944,37.879587000000001],[-122.274652,37.880116999999998],[-122.274371,37.883206000000001],[-122.27454299999999,37.884895],[-122.272876,37.885655],[-122.26997799999999,37.885603000000003],[-122.266609,37.886035],[-122.265503,37.886186000000002],[-122.264635,37.885871000000002],[-122.265737,37.884149000000001],[-122.26523899999999,37.880709000000003],[-122.264555,37.878959000000002],[-122.261098,37.879421999999998],[-122.26090000000001,37.879268000000003],[-122.260631,37.879300999999998],[-122.260434,37.879117000000001],[-122.259142,37.879288000000003],[-122.25917200000001,37.879444999999997],[-122.258285,37.879536000000002],[-122.25825399999999,37.879384999999999],[-122.25795100000001,37.879561000000002],[-122.25805200000001,37.879821],[-122.25756800000001,37.879803000000003],[-122.256569,37.879747000000002],[-122.256643,37.879958999999999],[-122.255083,37.880257],[-122.254723,37.875627000000001],[-122.25685799999999,37.875512999999998],[-122.25539499999999,37.873857999999998],[-122.259185,37.872613000000001],[-122.266171,37.872489999999999],[-122.266329,37.874187999999997],[-122.267534,37.874046999999997],[-122.268671,37.873896000000002],[-122.26866800000001,37.873823999999999],[-122.27203799999999,37.873035999999999],[-122.27326499999999,37.873325000000001],[-122.275465,37.873018999999999],[-122.27551,37.873376]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94706","AFFGEOID20":"860Z200US94706","GEOID20":"94706","NAME20":"94706","LSAD20":"Z5","ALAND20":3792606,"AWATER20":0,"emissions_total":306026359.87,"population":20860,"emissions_pc":14670.487050335571,"median_household_income":125410,"income_group":"$100,000 to $149,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.30926100000001,37.897728000000001],[-122.308859,37.897773000000001],[-122.305407,37.898162999999997],[-122.30218000000001,37.898524999999999],[-122.301579,37.898229000000001],[-122.30143700000001,37.898159999999997],[-122.299648,37.898097999999997],[-122.296207,37.898924999999998],[-122.293908,37.898367999999998],[-122.292655,37.898338000000003],[-122.291979,37.898224999999996],[-122.289884,37.897553000000002],[-122.288169,37.897835000000001],[-122.288053,37.899312000000002],[-122.28708899999999,37.899560999999999],[-122.28715099999999,37.898367999999998],[-122.286693,37.898513000000001],[-122.286788,37.896548000000003],[-122.286963,37.892809],[-122.287047,37.890917999999999],[-122.285701,37.891005999999997],[-122.284468,37.891061999999998],[-122.283114,37.888682000000003],[-122.284357,37.887014000000001],[-122.282411,37.886293000000002],[-122.280452,37.885762999999997],[-122.28094400000001,37.884965999999999],[-122.281971,37.884574999999998],[-122.282918,37.882511000000001],[-122.282678,37.881248999999997],[-122.283053,37.881045999999998],[-122.28327299999999,37.880926000000002],[-122.284701,37.880135000000003],[-122.28921200000001,37.881219000000002],[-122.28923,37.881174000000001],[-122.290898,37.881436999999998],[-122.29098,37.881425],[-122.295914,37.880474999999997],[-122.295896,37.880417000000001],[-122.29641599999999,37.880310000000001],[-122.29743499999999,37.883325999999997],[-122.298649,37.882837000000002],[-122.30018,37.882821999999997],[-122.302313,37.882356000000001],[-122.303746,37.882178000000003],[-122.305786,37.882021000000002],[-122.30722400000001,37.887072000000003],[-122.30868700000001,37.887470999999998],[-122.307835,37.890414999999997],[-122.30834400000001,37.894409000000003],[-122.309477,37.897703],[-122.30926100000001,37.897728000000001]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94703","AFFGEOID20":"860Z200US94703","GEOID20":"94703","NAME20":"94703","LSAD20":"Z5","ALAND20":3335069,"AWATER20":0,"emissions_total":257253386.76319999,"population":20404,"emissions_pc":12607.987980944912,"median_household_income":99901,"income_group":"$70,000 to $99,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.283053,37.881045999999998],[-122.281762,37.880555999999999],[-122.281976,37.881605999999998],[-122.280287,37.882438],[-122.275673,37.884754999999998],[-122.274963,37.885340999999997],[-122.27454299999999,37.884895],[-122.274371,37.883206000000001],[-122.274652,37.880116999999998],[-122.273944,37.879587000000001],[-122.273746,37.877788000000002],[-122.274119,37.877740000000003],[-122.273791,37.875948000000001],[-122.273574,37.875979999999998],[-122.273357,37.874215999999997],[-122.273332,37.873986000000002],[-122.27551,37.873376],[-122.275465,37.873018999999999],[-122.27326499999999,37.873325000000001],[-122.273067,37.871512000000003],[-122.272763,37.868783999999998],[-122.27312999999999,37.868737000000003],[-122.272931,37.866925000000002],[-122.272548,37.866967000000002],[-122.272375,37.865178999999998],[-122.27230400000001,37.863334000000002],[-122.272161,37.863351999999999],[-122.271951,37.861559999999997],[-122.271762,37.859769],[-122.26945499999999,37.860033999999999],[-122.267456,37.859416000000003],[-122.267927,37.857489999999999],[-122.268308,37.856538999999998],[-122.267011,37.855231000000003],[-122.26652199999999,37.852342999999998],[-122.267067,37.851889999999997],[-122.26896499999999,37.851616],[-122.26837399999999,37.848768],[-122.269409,37.848106999999999],[-122.269226,37.847200999999998],[-122.269144,37.846739999999997],[-122.271236,37.846465000000002],[-122.2758,37.845866999999998],[-122.276173,37.847662],[-122.276188,37.847734000000003],[-122.27746,37.847563999999998],[-122.277766,37.847524999999997],[-122.27807900000001,37.848826000000003],[-122.278505,37.850624000000003],[-122.278623,37.851103000000002],[-122.278702,37.851489000000001],[-122.279121,37.853287000000002],[-122.279698,37.856034999999999],[-122.28027,37.858728999999997],[-122.27981800000001,37.858780000000003],[-122.28018,37.860542000000002],[-122.280631,37.860486000000002],[-122.281226,37.862205000000003],[-122.280688,37.862267000000003],[-122.280931,37.865906000000003],[-122.281177,37.867528],[-122.281908,37.870372000000003],[-122.281722,37.871364999999997],[-122.28180399999999,37.872190000000003],[-122.28209,37.872155999999997],[-122.282302,37.873975000000002],[-122.282133,37.874932000000001],[-122.28239600000001,37.874895000000002],[-122.282186,37.876714],[-122.282606,37.876672999999997],[-122.282329,37.878850999999997],[-122.28305,37.878818000000003],[-122.28327299999999,37.880926000000002],[-122.283053,37.881045999999998]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94708","AFFGEOID20":"860Z200US94708","GEOID20":"94708","NAME20":"94708","LSAD20":"Z5","ALAND20":8625006,"AWATER20":31248,"emissions_total":281696165.52000004,"population":11810,"emissions_pc":23852.342550381036,"median_household_income":218950,"income_group":"$200,000 and more"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.28138800000001,37.913232000000001],[-122.27892900000001,37.915191999999998],[-122.278502,37.915322000000003],[-122.273368,37.911051],[-122.272525,37.911918],[-122.27129600000001,37.914057999999997],[-122.275874,37.916746000000003],[-122.279365,37.919609000000001],[-122.27856300000001,37.920006000000001],[-122.270672,37.923920000000003],[-122.270606,37.921384000000003],[-122.264178,37.921470999999997],[-122.263189,37.921487999999997],[-122.263734,37.920931000000003],[-122.254611,37.920578999999996],[-122.25222100000001,37.918655000000001],[-122.251006,37.915106999999999],[-122.25141000000001,37.914369000000001],[-122.252162,37.914014000000002],[-122.252287,37.913666999999997],[-122.25192800000001,37.913103],[-122.25266000000001,37.912503000000001],[-122.25308,37.911762000000003],[-122.252925,37.911467999999999],[-122.25071800000001,37.911062000000001],[-122.249645,37.911154000000003],[-122.249537,37.911076999999999],[-122.249246,37.910080999999998],[-122.248293,37.909737999999997],[-122.247727,37.909038000000002],[-122.247491,37.906306999999998],[-122.247754,37.905662],[-122.24705400000001,37.905436999999999],[-122.255413,37.898828999999999],[-122.25567599999999,37.897852999999998],[-122.255156,37.896258000000003],[-122.25363,37.896138000000001],[-122.252679,37.894987],[-122.25286699999999,37.893732],[-122.251052,37.893819000000001],[-122.249145,37.891128000000002],[-122.250286,37.889828000000001],[-122.249262,37.886972],[-122.24691,37.885354999999997],[-122.246827,37.884073000000001],[-122.246439,37.881202999999999],[-122.24683,37.881199000000002],[-122.249269,37.880896],[-122.255083,37.880257],[-122.256643,37.879958999999999],[-122.256569,37.879747000000002],[-122.25756800000001,37.879803000000003],[-122.25805200000001,37.879821],[-122.25795100000001,37.879561000000002],[-122.25825399999999,37.879384999999999],[-122.258285,37.879536000000002],[-122.25917200000001,37.879444999999997],[-122.259142,37.879288000000003],[-122.260434,37.879117000000001],[-122.260631,37.879300999999998],[-122.26090000000001,37.879268000000003],[-122.261098,37.879421999999998],[-122.264555,37.878959000000002],[-122.26523899999999,37.880709000000003],[-122.265737,37.884149000000001],[-122.264635,37.885871000000002],[-122.265503,37.886186000000002],[-122.26590299999999,37.886431000000002],[-122.266715,37.888744000000003],[-122.267174,37.890428],[-122.267084,37.890371000000002],[-122.266814,37.893104000000001],[-122.267737,37.893130999999997],[-122.26853,37.89479],[-122.26987200000001,37.899959000000003],[-122.26916300000001,37.901528999999996],[-122.269734,37.902104999999999],[-122.270177,37.901533000000001],[-122.270871,37.901380000000003],[-122.27279,37.904195000000001],[-122.27431199999999,37.903627],[-122.274463,37.904214000000003],[-122.27786999999999,37.903149999999997],[-122.27796600000001,37.903337000000001],[-122.277545,37.903978000000002],[-122.27754,37.904497999999997],[-122.27791499999999,37.906022999999998],[-122.278784,37.907549000000003],[-122.27937,37.906919000000002],[-122.28046999999999,37.908234999999998],[-122.28055000000001,37.910119000000002],[-122.28018899999999,37.910567],[-122.279943,37.911284999999999],[-122.28138800000001,37.913232000000001]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94702","AFFGEOID20":"860Z200US94702","GEOID20":"94702","NAME20":"94702","LSAD20":"Z5","ALAND20":3320290,"AWATER20":0,"emissions_total":226791565.26719999,"population":17473,"emissions_pc":12979.543596817948,"median_household_income":98873,"income_group":"$70,000 to $99,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.295896,37.880417000000001],[-122.295914,37.880474999999997],[-122.29098,37.881425],[-122.290898,37.881436999999998],[-122.28923,37.881174000000001],[-122.28921200000001,37.881219000000002],[-122.284701,37.880135000000003],[-122.28327299999999,37.880926000000002],[-122.28305,37.878818000000003],[-122.282329,37.878850999999997],[-122.282606,37.876672999999997],[-122.282186,37.876714],[-122.28239600000001,37.874895000000002],[-122.282133,37.874932000000001],[-122.282302,37.873975000000002],[-122.28209,37.872155999999997],[-122.28180399999999,37.872190000000003],[-122.281722,37.871364999999997],[-122.281908,37.870372000000003],[-122.281177,37.867528],[-122.280931,37.865906000000003],[-122.280688,37.862267000000003],[-122.281226,37.862205000000003],[-122.280631,37.860486000000002],[-122.28018,37.860542000000002],[-122.27981800000001,37.858780000000003],[-122.28027,37.858728999999997],[-122.279698,37.856034999999999],[-122.279121,37.853287000000002],[-122.278702,37.851489000000001],[-122.278623,37.851103000000002],[-122.278505,37.850624000000003],[-122.27807900000001,37.848826000000003],[-122.277766,37.847524999999997],[-122.277841,37.847515000000001],[-122.278944,37.847366999999998],[-122.281899,37.846975],[-122.28270500000001,37.849035999999998],[-122.28345899999999,37.850307000000001],[-122.286006,37.850172999999998],[-122.286247,37.850504999999998],[-122.286794,37.852178000000002],[-122.28748899999999,37.854394999999997],[-122.28859300000001,37.854565000000001],[-122.28840700000001,37.855891999999997],[-122.290172,37.860992000000003],[-122.291183,37.864142999999999],[-122.29117599999999,37.864548999999997],[-122.29260499999999,37.868974999999999],[-122.292226,37.869042],[-122.29272,37.870677999999998],[-122.293119,37.870558000000003],[-122.29328,37.870666999999997],[-122.29342200000001,37.871488999999997],[-122.2937,37.871934000000003],[-122.29399600000001,37.872849000000002],[-122.294037,37.873365],[-122.293645,37.873449000000001],[-122.294223,37.875168000000002],[-122.294472,37.875132000000001],[-122.295412,37.875301],[-122.295102,37.876227],[-122.29585899999999,37.878580999999997],[-122.29641599999999,37.880310000000001],[-122.295896,37.880417000000001]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94704","AFFGEOID20":"860Z200US94704","GEOID20":"94704","NAME20":"94704","LSAD20":"Z5","ALAND20":2204235,"AWATER20":0,"emissions_total":134226730.56959999,"population":25711,"emissions_pc":5220.5954871300219,"median_household_income":51696,"income_group":"$50,000 to $69,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.24964799999999,37.871395],[-122.24549500000001,37.872812000000003],[-122.24515599999999,37.869737000000001],[-122.241719,37.869644999999998],[-122.23970300000001,37.868763000000001],[-122.238421,37.867784],[-122.23900500000001,37.867206000000003],[-122.240785,37.869014999999997],[-122.242041,37.866619],[-122.24477899999999,37.866706000000001],[-122.244928,37.867683999999997],[-122.244991,37.868352999999999],[-122.24860099999999,37.868062000000002],[-122.249579,37.870300999999998],[-122.24964799999999,37.871395]]],[[[-122.27326499999999,37.873325000000001],[-122.27203799999999,37.873035999999999],[-122.26866800000001,37.873823999999999],[-122.268671,37.873896000000002],[-122.267534,37.874046999999997],[-122.266329,37.874187999999997],[-122.266171,37.872489999999999],[-122.266159,37.872388999999998],[-122.266227,37.868997999999998],[-122.26599,37.867834000000002],[-122.261482,37.868439000000002],[-122.259197,37.868720000000003],[-122.256945,37.869011999999998],[-122.255805,37.867316000000002],[-122.25794399999999,37.866124999999997],[-122.25546799999999,37.865527999999998],[-122.25395399999999,37.865737000000003],[-122.25429,37.867508000000001],[-122.254588,37.869320999999999],[-122.25232800000001,37.869616000000001],[-122.25097100000001,37.869328000000003],[-122.250214,37.869346],[-122.249863,37.867486999999997],[-122.24842,37.866083000000003],[-122.250483,37.865949000000001],[-122.250038,37.862437999999997],[-122.251288,37.862276999999999],[-122.253581,37.862138999999999],[-122.253552,37.861823000000001],[-122.260373,37.861220000000003],[-122.260617,37.861646],[-122.264556,37.860858999999998],[-122.26451900000001,37.860681999999997],[-122.26484000000001,37.860639999999997],[-122.26494,37.860944000000003],[-122.265092,37.860925999999999],[-122.265117,37.861046999999999],[-122.266183,37.860909999999997],[-122.266127,37.860478000000001],[-122.26945499999999,37.860033999999999],[-122.271762,37.859769],[-122.271951,37.861559999999997],[-122.272161,37.863351999999999],[-122.27230400000001,37.863334000000002],[-122.272375,37.865178999999998],[-122.272548,37.866967000000002],[-122.272931,37.866925000000002],[-122.27312999999999,37.868737000000003],[-122.272763,37.868783999999998],[-122.273067,37.871512000000003],[-122.27326499999999,37.873325000000001]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94710","AFFGEOID20":"860Z200US94710","GEOID20":"94710","NAME20":"94710","LSAD20":"Z5","ALAND20":5594277,"AWATER20":5864364,"emissions_total":125931736.16100001,"population":8471,"emissions_pc":14866.218411167514,"median_household_income":116313,"income_group":"$100,000 to $149,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.324613735211,37.874367458192602],[-122.318663,37.875306999999999],[-122.316615089001,37.873386827403202],[-122.313164,37.870151],[-122.308787798822,37.870835309450598],[-122.308502,37.87088],[-122.309605933044,37.874216556041397],[-122.31144500000001,37.879775000000002],[-122.31270088182301,37.881146119917602],[-122.308351,37.882114999999999],[-122.309316,37.886820999999998],[-122.30921600000001,37.887827999999999],[-122.30932199999999,37.887884999999997],[-122.309976926733,37.892217725001998],[-122.30949699999999,37.892980999999999],[-122.31139899999999,37.895794000000002],[-122.312530481444,37.896760786920602],[-122.311359,37.897489999999998],[-122.309477,37.897703],[-122.30834400000001,37.894409000000003],[-122.307835,37.890414999999997],[-122.30868700000001,37.887470999999998],[-122.30722400000001,37.887072000000003],[-122.305786,37.882021000000002],[-122.303746,37.882178000000003],[-122.302313,37.882356000000001],[-122.30018,37.882821999999997],[-122.298649,37.882837000000002],[-122.29743499999999,37.883325999999997],[-122.29641599999999,37.880310000000001],[-122.29585899999999,37.878580999999997],[-122.295102,37.876227],[-122.295412,37.875301],[-122.294472,37.875132000000001],[-122.294223,37.875168000000002],[-122.293645,37.873449000000001],[-122.294037,37.873365],[-122.29399600000001,37.872849000000002],[-122.2937,37.871934000000003],[-122.29342200000001,37.871488999999997],[-122.29328,37.870666999999997],[-122.293119,37.870558000000003],[-122.29272,37.870677999999998],[-122.292226,37.869042],[-122.29260499999999,37.868974999999999],[-122.29117599999999,37.864548999999997],[-122.291183,37.864142999999999],[-122.290172,37.860992000000003],[-122.28840700000001,37.855891999999997],[-122.28859300000001,37.854565000000001],[-122.28748899999999,37.854394999999997],[-122.286794,37.852178000000002],[-122.286247,37.850504999999998],[-122.28873900000001,37.849991000000003],[-122.29137299999999,37.849482000000002],[-122.29232399999999,37.849263999999998],[-122.295046,37.848706],[-122.298817,37.847917000000002],[-122.301029,37.847391000000002],[-122.30116157341,37.847362399484197],[-122.301314154591,37.853257931188303],[-122.301372,37.855493000000003],[-122.305406260358,37.859793706493299],[-122.306320869535,37.8607687218067],[-122.308352,37.862934000000003],[-122.315565567451,37.859470782386701],[-122.31640986063,37.859065439118098],[-122.31694400000001,37.858809000000001],[-122.317867877141,37.862741453432498],[-122.31812471522299,37.863834676496801],[-122.31864685158401,37.866057133176902],[-122.31872199999999,37.866377],[-122.319245175745,37.867015628529202],[-122.325193,37.874276000000002],[-122.324613735211,37.874367458192602]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94705","AFFGEOID20":"860Z200US94705","GEOID20":"94705","NAME20":"94705","LSAD20":"Z5","ALAND20":8755941,"AWATER20":0,"emissions_total":267141181.71240002,"population":14508,"emissions_pc":18413.370672208439,"median_household_income":157221,"income_group":"$150,000 to $199,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.26945499999999,37.860033999999999],[-122.266127,37.860478000000001],[-122.266183,37.860909999999997],[-122.265117,37.861046999999999],[-122.265092,37.860925999999999],[-122.26494,37.860944000000003],[-122.26484000000001,37.860639999999997],[-122.26451900000001,37.860681999999997],[-122.264556,37.860858999999998],[-122.260617,37.861646],[-122.260373,37.861220000000003],[-122.253552,37.861823000000001],[-122.253581,37.862138999999999],[-122.251288,37.862276999999999],[-122.250038,37.862437999999997],[-122.246714,37.863923999999997],[-122.247771,37.866115000000001],[-122.246962,37.866159000000003],[-122.245338,37.865985999999999],[-122.244733,37.865788000000002],[-122.245525,37.864035999999999],[-122.244404,37.862662999999998],[-122.244534,37.863726],[-122.240759,37.864058],[-122.23900500000001,37.867206000000003],[-122.238421,37.867784],[-122.23970300000001,37.868763000000001],[-122.241719,37.869644999999998],[-122.24515599999999,37.869737000000001],[-122.24549500000001,37.872812000000003],[-122.24633300000001,37.880231000000002],[-122.246439,37.881202999999999],[-122.246827,37.884073000000001],[-122.24691,37.885354999999997],[-122.24197100000001,37.881926999999997],[-122.238679,37.883324999999999],[-122.22884000000001,37.881022999999999],[-122.226035,37.879702999999999],[-122.22362,37.878565999999999],[-122.221414,37.875639999999997],[-122.219804,37.873494999999998],[-122.21764,37.872250000000001],[-122.21637200000001,37.869075000000002],[-122.216972,37.868775999999997],[-122.21778399999999,37.868355999999999],[-122.21942,37.868048999999999],[-122.221491,37.866256999999997],[-122.222388,37.866559000000002],[-122.221987,37.864204999999998],[-122.220861,37.864603000000002],[-122.217454,37.861888],[-122.216064,37.859527],[-122.213559,37.857911999999999],[-122.21556099999999,37.856180999999999],[-122.215726,37.856214000000001],[-122.21587700000001,37.857013000000002],[-122.216658,37.857475999999998],[-122.21660799999999,37.858068000000003],[-122.21739100000001,37.858562999999997],[-122.21858899999999,37.858835999999997],[-122.218761,37.859000000000002],[-122.218493,37.859473999999999],[-122.2188,37.860021000000003],[-122.219252,37.860014999999997],[-122.219391,37.859546000000002],[-122.22108,37.860114000000003],[-122.222621,37.857711000000002],[-122.221609,37.855291000000001],[-122.223288,37.855086],[-122.22354,37.854922999999999],[-122.223955,37.853603],[-122.22459499999999,37.855367000000001],[-122.227052,37.857199000000001],[-122.22916499999999,37.856709000000002],[-122.230266,37.855752000000003],[-122.23430500000001,37.853606999999997],[-122.234191,37.852544000000002],[-122.24191399999999,37.851908999999999],[-122.242526,37.851871000000003],[-122.245739,37.852240999999999],[-122.245537,37.851691000000002],[-122.246109,37.851602999999997],[-122.24572000000001,37.851180999999997],[-122.245915,37.850763000000001],[-122.245755,37.850605999999999],[-122.24635600000001,37.850307000000001],[-122.24717,37.851067],[-122.247429,37.851253],[-122.247253,37.851576000000001],[-122.24738000000001,37.851647999999997],[-122.247501,37.851571],[-122.24947299999999,37.851447999999998],[-122.249629,37.851410999999999],[-122.24998100000001,37.851294000000003],[-122.25096000000001,37.851159000000003],[-122.252503,37.850825999999998],[-122.25331,37.853465999999997],[-122.25334599999999,37.853830000000002],[-122.256197,37.853448999999998],[-122.257251,37.853175999999998],[-122.257209,37.85295],[-122.259727,37.852725],[-122.259753,37.852854000000001],[-122.260223,37.852792999999998],[-122.26182900000001,37.852580000000003],[-122.262221,37.852527000000002],[-122.262182,37.852331999999997],[-122.263132,37.852218000000001],[-122.263108,37.852114999999998],[-122.26353899999999,37.852058999999997],[-122.263608,37.852296000000003],[-122.26612799999999,37.852009000000002],[-122.267067,37.851889999999997],[-122.26652199999999,37.852342999999998],[-122.267011,37.855231000000003],[-122.268308,37.856538999999998],[-122.267927,37.857489999999999],[-122.267456,37.859416000000003],[-122.26945499999999,37.860033999999999]]]]}}]},"locations":["94707","94709","94706","94703","94708","94702","94704","94710","94705"],"featureidkey":"properties.ZCTA5CE20","z":[22295.58022254684,11277.691380983608,14670.487050335571,12607.987980944912,23852.342550381036,12979.543596817948,5220.5954871300219,14866.218411167514,18413.370672208439],"zmin":7643.4338446714555,"zmax":23229.637619247354,"zauto":false,"autocolorscale":false,"colorscale":[["0","#E6F2F3"],["0.3","#A8DADC"],["0.6","#457B9D"],["1","#1D3557"]],"marker":{"line":{"color":"white","width":0.80000000000000004}},"hoverinfo":"text","text":["ZIP 94707 has above-average per-capita household carbon emissions,<br>at approximately <b>22,296 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$186,579<\/b>.","ZIP 94709 has below-average per-capita household carbon emissions,<br>at approximately <b>11,278 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$84,965<\/b>.","ZIP 94706 has below-average per-capita household carbon emissions,<br>at approximately <b>14,670 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$125,410<\/b>.","ZIP 94703 has below-average per-capita household carbon emissions,<br>at approximately <b>12,608 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$99,901<\/b>.","ZIP 94708 has above-average per-capita household carbon emissions,<br>at approximately <b>23,852 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$218,950<\/b>.","ZIP 94702 has below-average per-capita household carbon emissions,<br>at approximately <b>12,980 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$98,873<\/b>.","ZIP 94704 has below-average per-capita household carbon emissions,<br>at approximately <b>5,221 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$51,696<\/b>.","ZIP 94710 has below-average per-capita household carbon emissions,<br>at approximately <b>14,866 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$116,313<\/b>.","ZIP 94705 has above-average per-capita household carbon emissions,<br>at approximately <b>18,413 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$157,221<\/b>."],"colorbar":{"title":"Per-capita emissions<br>(kg CO₂e)","tickformat":",","titlefont":{"size":11},"tickfont":{"size":10}},"inherit":true}},"layout":{"margin":{"b":0,"l":0,"t":0,"r":0},"mapType":"geo","paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","title":{"x":0.5,"xanchor":"center"},"geo":{"domain":{"x":[0,1],"y":[0,1]},"fitbounds":"locations","visible":false},"annotations":[{"x":1,"y":0.029999999999999999,"xref":"paper","yref":"paper","xanchor":"right","yanchor":"bottom","text":"ZIP code 94720 (UC Berkeley campus) is excluded due to limited household data availability.","showarrow":false,"font":{"size":11,"color":"#666666"},"align":"right"}],"font":{"family":"Inter, Helvetica, Arial, sans-serif","color":"#222222"},"hoverlabel":{"bgcolor":"rgba(255,255,255,0.96)","bordercolor":"#CCCCCC","font":{"family":"Inter, Helvetica, Arial, sans-serif","size":12,"color":"#222222"},"align":"left"},"scene":{"zaxis":{"title":[]}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false,"scrollZoom":false},"data":[{"colorbar":{"title":"Per-capita emissions<br>(kg CO₂e)","ticklen":2,"tickformat":",","titlefont":{"size":11},"tickfont":{"size":10},"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","#E6F2F3"],["0.3","#A8DADC"],["0.6","#457B9D"],["1","#1D3557"]],"showscale":true,"type":"choropleth","geojson":{"type":"FeatureCollection","name":"file38ce957de3ce96","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"ZCTA5CE20":"94707","AFFGEOID20":"860Z200US94707","GEOID20":"94707","NAME20":"94707","LSAD20":"Z5","ALAND20":4563750,"AWATER20":0,"emissions_total":280835128.48320001,"population":12596,"emissions_pc":22295.58022254684,"median_household_income":186579,"income_group":"$150,000 to $199,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.29104100000001,37.904153000000001],[-122.288456,37.905622999999999],[-122.289055,37.909075999999999],[-122.287181,37.909913000000003],[-122.28780500000001,37.911335000000001],[-122.289084,37.914253000000002],[-122.288043,37.914985000000001],[-122.284705,37.917372999999998],[-122.282552,37.918903],[-122.28120699999999,37.918697000000002],[-122.28016,37.917690999999998],[-122.27900200000001,37.916594000000003],[-122.278502,37.915322000000003],[-122.27892900000001,37.915191999999998],[-122.28138800000001,37.913232000000001],[-122.279943,37.911284999999999],[-122.28018899999999,37.910567],[-122.28055000000001,37.910119000000002],[-122.28046999999999,37.908234999999998],[-122.27937,37.906919000000002],[-122.278784,37.907549000000003],[-122.27791499999999,37.906022999999998],[-122.27754,37.904497999999997],[-122.277545,37.903978000000002],[-122.27796600000001,37.903337000000001],[-122.27786999999999,37.903149999999997],[-122.274463,37.904214000000003],[-122.27431199999999,37.903627],[-122.27279,37.904195000000001],[-122.270871,37.901380000000003],[-122.270177,37.901533000000001],[-122.269734,37.902104999999999],[-122.26916300000001,37.901528999999996],[-122.26987200000001,37.899959000000003],[-122.26853,37.89479],[-122.267737,37.893130999999997],[-122.266814,37.893104000000001],[-122.267084,37.890371000000002],[-122.267174,37.890428],[-122.266715,37.888744000000003],[-122.26590299999999,37.886431000000002],[-122.265503,37.886186000000002],[-122.266609,37.886035],[-122.26997799999999,37.885603000000003],[-122.272876,37.885655],[-122.27454299999999,37.884895],[-122.274963,37.885340999999997],[-122.275673,37.884754999999998],[-122.280287,37.882438],[-122.281976,37.881605999999998],[-122.281762,37.880555999999999],[-122.283053,37.881045999999998],[-122.282678,37.881248999999997],[-122.282918,37.882511000000001],[-122.281971,37.884574999999998],[-122.28094400000001,37.884965999999999],[-122.280452,37.885762999999997],[-122.282411,37.886293000000002],[-122.284357,37.887014000000001],[-122.283114,37.888682000000003],[-122.284468,37.891061999999998],[-122.285701,37.891005999999997],[-122.287047,37.890917999999999],[-122.286963,37.892809],[-122.286788,37.896548000000003],[-122.286693,37.898513000000001],[-122.28715099999999,37.898367999999998],[-122.28708899999999,37.899560999999999],[-122.288053,37.899312000000002],[-122.28865,37.903596],[-122.29104100000001,37.904153000000001]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94709","AFFGEOID20":"860Z200US94709","GEOID20":"94709","NAME20":"94709","LSAD20":"Z5","ALAND20":1749787,"AWATER20":0,"emissions_total":137587834.84800002,"population":12200,"emissions_pc":11277.691380983608,"median_household_income":84965,"income_group":"$70,000 to $99,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.27551,37.873376],[-122.273332,37.873986000000002],[-122.273357,37.874215999999997],[-122.273574,37.875979999999998],[-122.273791,37.875948000000001],[-122.274119,37.877740000000003],[-122.273746,37.877788000000002],[-122.273944,37.879587000000001],[-122.274652,37.880116999999998],[-122.274371,37.883206000000001],[-122.27454299999999,37.884895],[-122.272876,37.885655],[-122.26997799999999,37.885603000000003],[-122.266609,37.886035],[-122.265503,37.886186000000002],[-122.264635,37.885871000000002],[-122.265737,37.884149000000001],[-122.26523899999999,37.880709000000003],[-122.264555,37.878959000000002],[-122.261098,37.879421999999998],[-122.26090000000001,37.879268000000003],[-122.260631,37.879300999999998],[-122.260434,37.879117000000001],[-122.259142,37.879288000000003],[-122.25917200000001,37.879444999999997],[-122.258285,37.879536000000002],[-122.25825399999999,37.879384999999999],[-122.25795100000001,37.879561000000002],[-122.25805200000001,37.879821],[-122.25756800000001,37.879803000000003],[-122.256569,37.879747000000002],[-122.256643,37.879958999999999],[-122.255083,37.880257],[-122.254723,37.875627000000001],[-122.25685799999999,37.875512999999998],[-122.25539499999999,37.873857999999998],[-122.259185,37.872613000000001],[-122.266171,37.872489999999999],[-122.266329,37.874187999999997],[-122.267534,37.874046999999997],[-122.268671,37.873896000000002],[-122.26866800000001,37.873823999999999],[-122.27203799999999,37.873035999999999],[-122.27326499999999,37.873325000000001],[-122.275465,37.873018999999999],[-122.27551,37.873376]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94706","AFFGEOID20":"860Z200US94706","GEOID20":"94706","NAME20":"94706","LSAD20":"Z5","ALAND20":3792606,"AWATER20":0,"emissions_total":306026359.87,"population":20860,"emissions_pc":14670.487050335571,"median_household_income":125410,"income_group":"$100,000 to $149,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.30926100000001,37.897728000000001],[-122.308859,37.897773000000001],[-122.305407,37.898162999999997],[-122.30218000000001,37.898524999999999],[-122.301579,37.898229000000001],[-122.30143700000001,37.898159999999997],[-122.299648,37.898097999999997],[-122.296207,37.898924999999998],[-122.293908,37.898367999999998],[-122.292655,37.898338000000003],[-122.291979,37.898224999999996],[-122.289884,37.897553000000002],[-122.288169,37.897835000000001],[-122.288053,37.899312000000002],[-122.28708899999999,37.899560999999999],[-122.28715099999999,37.898367999999998],[-122.286693,37.898513000000001],[-122.286788,37.896548000000003],[-122.286963,37.892809],[-122.287047,37.890917999999999],[-122.285701,37.891005999999997],[-122.284468,37.891061999999998],[-122.283114,37.888682000000003],[-122.284357,37.887014000000001],[-122.282411,37.886293000000002],[-122.280452,37.885762999999997],[-122.28094400000001,37.884965999999999],[-122.281971,37.884574999999998],[-122.282918,37.882511000000001],[-122.282678,37.881248999999997],[-122.283053,37.881045999999998],[-122.28327299999999,37.880926000000002],[-122.284701,37.880135000000003],[-122.28921200000001,37.881219000000002],[-122.28923,37.881174000000001],[-122.290898,37.881436999999998],[-122.29098,37.881425],[-122.295914,37.880474999999997],[-122.295896,37.880417000000001],[-122.29641599999999,37.880310000000001],[-122.29743499999999,37.883325999999997],[-122.298649,37.882837000000002],[-122.30018,37.882821999999997],[-122.302313,37.882356000000001],[-122.303746,37.882178000000003],[-122.305786,37.882021000000002],[-122.30722400000001,37.887072000000003],[-122.30868700000001,37.887470999999998],[-122.307835,37.890414999999997],[-122.30834400000001,37.894409000000003],[-122.309477,37.897703],[-122.30926100000001,37.897728000000001]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94703","AFFGEOID20":"860Z200US94703","GEOID20":"94703","NAME20":"94703","LSAD20":"Z5","ALAND20":3335069,"AWATER20":0,"emissions_total":257253386.76319999,"population":20404,"emissions_pc":12607.987980944912,"median_household_income":99901,"income_group":"$70,000 to $99,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.283053,37.881045999999998],[-122.281762,37.880555999999999],[-122.281976,37.881605999999998],[-122.280287,37.882438],[-122.275673,37.884754999999998],[-122.274963,37.885340999999997],[-122.27454299999999,37.884895],[-122.274371,37.883206000000001],[-122.274652,37.880116999999998],[-122.273944,37.879587000000001],[-122.273746,37.877788000000002],[-122.274119,37.877740000000003],[-122.273791,37.875948000000001],[-122.273574,37.875979999999998],[-122.273357,37.874215999999997],[-122.273332,37.873986000000002],[-122.27551,37.873376],[-122.275465,37.873018999999999],[-122.27326499999999,37.873325000000001],[-122.273067,37.871512000000003],[-122.272763,37.868783999999998],[-122.27312999999999,37.868737000000003],[-122.272931,37.866925000000002],[-122.272548,37.866967000000002],[-122.272375,37.865178999999998],[-122.27230400000001,37.863334000000002],[-122.272161,37.863351999999999],[-122.271951,37.861559999999997],[-122.271762,37.859769],[-122.26945499999999,37.860033999999999],[-122.267456,37.859416000000003],[-122.267927,37.857489999999999],[-122.268308,37.856538999999998],[-122.267011,37.855231000000003],[-122.26652199999999,37.852342999999998],[-122.267067,37.851889999999997],[-122.26896499999999,37.851616],[-122.26837399999999,37.848768],[-122.269409,37.848106999999999],[-122.269226,37.847200999999998],[-122.269144,37.846739999999997],[-122.271236,37.846465000000002],[-122.2758,37.845866999999998],[-122.276173,37.847662],[-122.276188,37.847734000000003],[-122.27746,37.847563999999998],[-122.277766,37.847524999999997],[-122.27807900000001,37.848826000000003],[-122.278505,37.850624000000003],[-122.278623,37.851103000000002],[-122.278702,37.851489000000001],[-122.279121,37.853287000000002],[-122.279698,37.856034999999999],[-122.28027,37.858728999999997],[-122.27981800000001,37.858780000000003],[-122.28018,37.860542000000002],[-122.280631,37.860486000000002],[-122.281226,37.862205000000003],[-122.280688,37.862267000000003],[-122.280931,37.865906000000003],[-122.281177,37.867528],[-122.281908,37.870372000000003],[-122.281722,37.871364999999997],[-122.28180399999999,37.872190000000003],[-122.28209,37.872155999999997],[-122.282302,37.873975000000002],[-122.282133,37.874932000000001],[-122.28239600000001,37.874895000000002],[-122.282186,37.876714],[-122.282606,37.876672999999997],[-122.282329,37.878850999999997],[-122.28305,37.878818000000003],[-122.28327299999999,37.880926000000002],[-122.283053,37.881045999999998]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94708","AFFGEOID20":"860Z200US94708","GEOID20":"94708","NAME20":"94708","LSAD20":"Z5","ALAND20":8625006,"AWATER20":31248,"emissions_total":281696165.52000004,"population":11810,"emissions_pc":23852.342550381036,"median_household_income":218950,"income_group":"$200,000 and more"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.28138800000001,37.913232000000001],[-122.27892900000001,37.915191999999998],[-122.278502,37.915322000000003],[-122.273368,37.911051],[-122.272525,37.911918],[-122.27129600000001,37.914057999999997],[-122.275874,37.916746000000003],[-122.279365,37.919609000000001],[-122.27856300000001,37.920006000000001],[-122.270672,37.923920000000003],[-122.270606,37.921384000000003],[-122.264178,37.921470999999997],[-122.263189,37.921487999999997],[-122.263734,37.920931000000003],[-122.254611,37.920578999999996],[-122.25222100000001,37.918655000000001],[-122.251006,37.915106999999999],[-122.25141000000001,37.914369000000001],[-122.252162,37.914014000000002],[-122.252287,37.913666999999997],[-122.25192800000001,37.913103],[-122.25266000000001,37.912503000000001],[-122.25308,37.911762000000003],[-122.252925,37.911467999999999],[-122.25071800000001,37.911062000000001],[-122.249645,37.911154000000003],[-122.249537,37.911076999999999],[-122.249246,37.910080999999998],[-122.248293,37.909737999999997],[-122.247727,37.909038000000002],[-122.247491,37.906306999999998],[-122.247754,37.905662],[-122.24705400000001,37.905436999999999],[-122.255413,37.898828999999999],[-122.25567599999999,37.897852999999998],[-122.255156,37.896258000000003],[-122.25363,37.896138000000001],[-122.252679,37.894987],[-122.25286699999999,37.893732],[-122.251052,37.893819000000001],[-122.249145,37.891128000000002],[-122.250286,37.889828000000001],[-122.249262,37.886972],[-122.24691,37.885354999999997],[-122.246827,37.884073000000001],[-122.246439,37.881202999999999],[-122.24683,37.881199000000002],[-122.249269,37.880896],[-122.255083,37.880257],[-122.256643,37.879958999999999],[-122.256569,37.879747000000002],[-122.25756800000001,37.879803000000003],[-122.25805200000001,37.879821],[-122.25795100000001,37.879561000000002],[-122.25825399999999,37.879384999999999],[-122.258285,37.879536000000002],[-122.25917200000001,37.879444999999997],[-122.259142,37.879288000000003],[-122.260434,37.879117000000001],[-122.260631,37.879300999999998],[-122.26090000000001,37.879268000000003],[-122.261098,37.879421999999998],[-122.264555,37.878959000000002],[-122.26523899999999,37.880709000000003],[-122.265737,37.884149000000001],[-122.264635,37.885871000000002],[-122.265503,37.886186000000002],[-122.26590299999999,37.886431000000002],[-122.266715,37.888744000000003],[-122.267174,37.890428],[-122.267084,37.890371000000002],[-122.266814,37.893104000000001],[-122.267737,37.893130999999997],[-122.26853,37.89479],[-122.26987200000001,37.899959000000003],[-122.26916300000001,37.901528999999996],[-122.269734,37.902104999999999],[-122.270177,37.901533000000001],[-122.270871,37.901380000000003],[-122.27279,37.904195000000001],[-122.27431199999999,37.903627],[-122.274463,37.904214000000003],[-122.27786999999999,37.903149999999997],[-122.27796600000001,37.903337000000001],[-122.277545,37.903978000000002],[-122.27754,37.904497999999997],[-122.27791499999999,37.906022999999998],[-122.278784,37.907549000000003],[-122.27937,37.906919000000002],[-122.28046999999999,37.908234999999998],[-122.28055000000001,37.910119000000002],[-122.28018899999999,37.910567],[-122.279943,37.911284999999999],[-122.28138800000001,37.913232000000001]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94702","AFFGEOID20":"860Z200US94702","GEOID20":"94702","NAME20":"94702","LSAD20":"Z5","ALAND20":3320290,"AWATER20":0,"emissions_total":226791565.26719999,"population":17473,"emissions_pc":12979.543596817948,"median_household_income":98873,"income_group":"$70,000 to $99,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.295896,37.880417000000001],[-122.295914,37.880474999999997],[-122.29098,37.881425],[-122.290898,37.881436999999998],[-122.28923,37.881174000000001],[-122.28921200000001,37.881219000000002],[-122.284701,37.880135000000003],[-122.28327299999999,37.880926000000002],[-122.28305,37.878818000000003],[-122.282329,37.878850999999997],[-122.282606,37.876672999999997],[-122.282186,37.876714],[-122.28239600000001,37.874895000000002],[-122.282133,37.874932000000001],[-122.282302,37.873975000000002],[-122.28209,37.872155999999997],[-122.28180399999999,37.872190000000003],[-122.281722,37.871364999999997],[-122.281908,37.870372000000003],[-122.281177,37.867528],[-122.280931,37.865906000000003],[-122.280688,37.862267000000003],[-122.281226,37.862205000000003],[-122.280631,37.860486000000002],[-122.28018,37.860542000000002],[-122.27981800000001,37.858780000000003],[-122.28027,37.858728999999997],[-122.279698,37.856034999999999],[-122.279121,37.853287000000002],[-122.278702,37.851489000000001],[-122.278623,37.851103000000002],[-122.278505,37.850624000000003],[-122.27807900000001,37.848826000000003],[-122.277766,37.847524999999997],[-122.277841,37.847515000000001],[-122.278944,37.847366999999998],[-122.281899,37.846975],[-122.28270500000001,37.849035999999998],[-122.28345899999999,37.850307000000001],[-122.286006,37.850172999999998],[-122.286247,37.850504999999998],[-122.286794,37.852178000000002],[-122.28748899999999,37.854394999999997],[-122.28859300000001,37.854565000000001],[-122.28840700000001,37.855891999999997],[-122.290172,37.860992000000003],[-122.291183,37.864142999999999],[-122.29117599999999,37.864548999999997],[-122.29260499999999,37.868974999999999],[-122.292226,37.869042],[-122.29272,37.870677999999998],[-122.293119,37.870558000000003],[-122.29328,37.870666999999997],[-122.29342200000001,37.871488999999997],[-122.2937,37.871934000000003],[-122.29399600000001,37.872849000000002],[-122.294037,37.873365],[-122.293645,37.873449000000001],[-122.294223,37.875168000000002],[-122.294472,37.875132000000001],[-122.295412,37.875301],[-122.295102,37.876227],[-122.29585899999999,37.878580999999997],[-122.29641599999999,37.880310000000001],[-122.295896,37.880417000000001]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94704","AFFGEOID20":"860Z200US94704","GEOID20":"94704","NAME20":"94704","LSAD20":"Z5","ALAND20":2204235,"AWATER20":0,"emissions_total":134226730.56959999,"population":25711,"emissions_pc":5220.5954871300219,"median_household_income":51696,"income_group":"$50,000 to $69,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.24964799999999,37.871395],[-122.24549500000001,37.872812000000003],[-122.24515599999999,37.869737000000001],[-122.241719,37.869644999999998],[-122.23970300000001,37.868763000000001],[-122.238421,37.867784],[-122.23900500000001,37.867206000000003],[-122.240785,37.869014999999997],[-122.242041,37.866619],[-122.24477899999999,37.866706000000001],[-122.244928,37.867683999999997],[-122.244991,37.868352999999999],[-122.24860099999999,37.868062000000002],[-122.249579,37.870300999999998],[-122.24964799999999,37.871395]]],[[[-122.27326499999999,37.873325000000001],[-122.27203799999999,37.873035999999999],[-122.26866800000001,37.873823999999999],[-122.268671,37.873896000000002],[-122.267534,37.874046999999997],[-122.266329,37.874187999999997],[-122.266171,37.872489999999999],[-122.266159,37.872388999999998],[-122.266227,37.868997999999998],[-122.26599,37.867834000000002],[-122.261482,37.868439000000002],[-122.259197,37.868720000000003],[-122.256945,37.869011999999998],[-122.255805,37.867316000000002],[-122.25794399999999,37.866124999999997],[-122.25546799999999,37.865527999999998],[-122.25395399999999,37.865737000000003],[-122.25429,37.867508000000001],[-122.254588,37.869320999999999],[-122.25232800000001,37.869616000000001],[-122.25097100000001,37.869328000000003],[-122.250214,37.869346],[-122.249863,37.867486999999997],[-122.24842,37.866083000000003],[-122.250483,37.865949000000001],[-122.250038,37.862437999999997],[-122.251288,37.862276999999999],[-122.253581,37.862138999999999],[-122.253552,37.861823000000001],[-122.260373,37.861220000000003],[-122.260617,37.861646],[-122.264556,37.860858999999998],[-122.26451900000001,37.860681999999997],[-122.26484000000001,37.860639999999997],[-122.26494,37.860944000000003],[-122.265092,37.860925999999999],[-122.265117,37.861046999999999],[-122.266183,37.860909999999997],[-122.266127,37.860478000000001],[-122.26945499999999,37.860033999999999],[-122.271762,37.859769],[-122.271951,37.861559999999997],[-122.272161,37.863351999999999],[-122.27230400000001,37.863334000000002],[-122.272375,37.865178999999998],[-122.272548,37.866967000000002],[-122.272931,37.866925000000002],[-122.27312999999999,37.868737000000003],[-122.272763,37.868783999999998],[-122.273067,37.871512000000003],[-122.27326499999999,37.873325000000001]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94710","AFFGEOID20":"860Z200US94710","GEOID20":"94710","NAME20":"94710","LSAD20":"Z5","ALAND20":5594277,"AWATER20":5864364,"emissions_total":125931736.16100001,"population":8471,"emissions_pc":14866.218411167514,"median_household_income":116313,"income_group":"$100,000 to $149,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.324613735211,37.874367458192602],[-122.318663,37.875306999999999],[-122.316615089001,37.873386827403202],[-122.313164,37.870151],[-122.308787798822,37.870835309450598],[-122.308502,37.87088],[-122.309605933044,37.874216556041397],[-122.31144500000001,37.879775000000002],[-122.31270088182301,37.881146119917602],[-122.308351,37.882114999999999],[-122.309316,37.886820999999998],[-122.30921600000001,37.887827999999999],[-122.30932199999999,37.887884999999997],[-122.309976926733,37.892217725001998],[-122.30949699999999,37.892980999999999],[-122.31139899999999,37.895794000000002],[-122.312530481444,37.896760786920602],[-122.311359,37.897489999999998],[-122.309477,37.897703],[-122.30834400000001,37.894409000000003],[-122.307835,37.890414999999997],[-122.30868700000001,37.887470999999998],[-122.30722400000001,37.887072000000003],[-122.305786,37.882021000000002],[-122.303746,37.882178000000003],[-122.302313,37.882356000000001],[-122.30018,37.882821999999997],[-122.298649,37.882837000000002],[-122.29743499999999,37.883325999999997],[-122.29641599999999,37.880310000000001],[-122.29585899999999,37.878580999999997],[-122.295102,37.876227],[-122.295412,37.875301],[-122.294472,37.875132000000001],[-122.294223,37.875168000000002],[-122.293645,37.873449000000001],[-122.294037,37.873365],[-122.29399600000001,37.872849000000002],[-122.2937,37.871934000000003],[-122.29342200000001,37.871488999999997],[-122.29328,37.870666999999997],[-122.293119,37.870558000000003],[-122.29272,37.870677999999998],[-122.292226,37.869042],[-122.29260499999999,37.868974999999999],[-122.29117599999999,37.864548999999997],[-122.291183,37.864142999999999],[-122.290172,37.860992000000003],[-122.28840700000001,37.855891999999997],[-122.28859300000001,37.854565000000001],[-122.28748899999999,37.854394999999997],[-122.286794,37.852178000000002],[-122.286247,37.850504999999998],[-122.28873900000001,37.849991000000003],[-122.29137299999999,37.849482000000002],[-122.29232399999999,37.849263999999998],[-122.295046,37.848706],[-122.298817,37.847917000000002],[-122.301029,37.847391000000002],[-122.30116157341,37.847362399484197],[-122.301314154591,37.853257931188303],[-122.301372,37.855493000000003],[-122.305406260358,37.859793706493299],[-122.306320869535,37.8607687218067],[-122.308352,37.862934000000003],[-122.315565567451,37.859470782386701],[-122.31640986063,37.859065439118098],[-122.31694400000001,37.858809000000001],[-122.317867877141,37.862741453432498],[-122.31812471522299,37.863834676496801],[-122.31864685158401,37.866057133176902],[-122.31872199999999,37.866377],[-122.319245175745,37.867015628529202],[-122.325193,37.874276000000002],[-122.324613735211,37.874367458192602]]]]}},{"type":"Feature","properties":{"ZCTA5CE20":"94705","AFFGEOID20":"860Z200US94705","GEOID20":"94705","NAME20":"94705","LSAD20":"Z5","ALAND20":8755941,"AWATER20":0,"emissions_total":267141181.71240002,"population":14508,"emissions_pc":18413.370672208439,"median_household_income":157221,"income_group":"$150,000 to $199,999"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-122.26945499999999,37.860033999999999],[-122.266127,37.860478000000001],[-122.266183,37.860909999999997],[-122.265117,37.861046999999999],[-122.265092,37.860925999999999],[-122.26494,37.860944000000003],[-122.26484000000001,37.860639999999997],[-122.26451900000001,37.860681999999997],[-122.264556,37.860858999999998],[-122.260617,37.861646],[-122.260373,37.861220000000003],[-122.253552,37.861823000000001],[-122.253581,37.862138999999999],[-122.251288,37.862276999999999],[-122.250038,37.862437999999997],[-122.246714,37.863923999999997],[-122.247771,37.866115000000001],[-122.246962,37.866159000000003],[-122.245338,37.865985999999999],[-122.244733,37.865788000000002],[-122.245525,37.864035999999999],[-122.244404,37.862662999999998],[-122.244534,37.863726],[-122.240759,37.864058],[-122.23900500000001,37.867206000000003],[-122.238421,37.867784],[-122.23970300000001,37.868763000000001],[-122.241719,37.869644999999998],[-122.24515599999999,37.869737000000001],[-122.24549500000001,37.872812000000003],[-122.24633300000001,37.880231000000002],[-122.246439,37.881202999999999],[-122.246827,37.884073000000001],[-122.24691,37.885354999999997],[-122.24197100000001,37.881926999999997],[-122.238679,37.883324999999999],[-122.22884000000001,37.881022999999999],[-122.226035,37.879702999999999],[-122.22362,37.878565999999999],[-122.221414,37.875639999999997],[-122.219804,37.873494999999998],[-122.21764,37.872250000000001],[-122.21637200000001,37.869075000000002],[-122.216972,37.868775999999997],[-122.21778399999999,37.868355999999999],[-122.21942,37.868048999999999],[-122.221491,37.866256999999997],[-122.222388,37.866559000000002],[-122.221987,37.864204999999998],[-122.220861,37.864603000000002],[-122.217454,37.861888],[-122.216064,37.859527],[-122.213559,37.857911999999999],[-122.21556099999999,37.856180999999999],[-122.215726,37.856214000000001],[-122.21587700000001,37.857013000000002],[-122.216658,37.857475999999998],[-122.21660799999999,37.858068000000003],[-122.21739100000001,37.858562999999997],[-122.21858899999999,37.858835999999997],[-122.218761,37.859000000000002],[-122.218493,37.859473999999999],[-122.2188,37.860021000000003],[-122.219252,37.860014999999997],[-122.219391,37.859546000000002],[-122.22108,37.860114000000003],[-122.222621,37.857711000000002],[-122.221609,37.855291000000001],[-122.223288,37.855086],[-122.22354,37.854922999999999],[-122.223955,37.853603],[-122.22459499999999,37.855367000000001],[-122.227052,37.857199000000001],[-122.22916499999999,37.856709000000002],[-122.230266,37.855752000000003],[-122.23430500000001,37.853606999999997],[-122.234191,37.852544000000002],[-122.24191399999999,37.851908999999999],[-122.242526,37.851871000000003],[-122.245739,37.852240999999999],[-122.245537,37.851691000000002],[-122.246109,37.851602999999997],[-122.24572000000001,37.851180999999997],[-122.245915,37.850763000000001],[-122.245755,37.850605999999999],[-122.24635600000001,37.850307000000001],[-122.24717,37.851067],[-122.247429,37.851253],[-122.247253,37.851576000000001],[-122.24738000000001,37.851647999999997],[-122.247501,37.851571],[-122.24947299999999,37.851447999999998],[-122.249629,37.851410999999999],[-122.24998100000001,37.851294000000003],[-122.25096000000001,37.851159000000003],[-122.252503,37.850825999999998],[-122.25331,37.853465999999997],[-122.25334599999999,37.853830000000002],[-122.256197,37.853448999999998],[-122.257251,37.853175999999998],[-122.257209,37.85295],[-122.259727,37.852725],[-122.259753,37.852854000000001],[-122.260223,37.852792999999998],[-122.26182900000001,37.852580000000003],[-122.262221,37.852527000000002],[-122.262182,37.852331999999997],[-122.263132,37.852218000000001],[-122.263108,37.852114999999998],[-122.26353899999999,37.852058999999997],[-122.263608,37.852296000000003],[-122.26612799999999,37.852009000000002],[-122.267067,37.851889999999997],[-122.26652199999999,37.852342999999998],[-122.267011,37.855231000000003],[-122.268308,37.856538999999998],[-122.267927,37.857489999999999],[-122.267456,37.859416000000003],[-122.26945499999999,37.860033999999999]]]]}}]},"locations":["94707","94709","94706","94703","94708","94702","94704","94710","94705"],"featureidkey":"properties.ZCTA5CE20","z":[22295.58022254684,11277.691380983608,14670.487050335571,12607.987980944912,23852.342550381036,12979.543596817948,5220.5954871300219,14866.218411167514,18413.370672208439],"zmin":7643.4338446714555,"zmax":23229.637619247354,"zauto":false,"autocolorscale":false,"marker":{"line":{"color":"white","width":0.80000000000000004}},"hoverinfo":["text","text","text","text","text","text","text","text","text"],"text":["ZIP 94707 has above-average per-capita household carbon emissions,<br>at approximately <b>22,296 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$186,579<\/b>.","ZIP 94709 has below-average per-capita household carbon emissions,<br>at approximately <b>11,278 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$84,965<\/b>.","ZIP 94706 has below-average per-capita household carbon emissions,<br>at approximately <b>14,670 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$125,410<\/b>.","ZIP 94703 has below-average per-capita household carbon emissions,<br>at approximately <b>12,608 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$99,901<\/b>.","ZIP 94708 has above-average per-capita household carbon emissions,<br>at approximately <b>23,852 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$218,950<\/b>.","ZIP 94702 has below-average per-capita household carbon emissions,<br>at approximately <b>12,980 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$98,873<\/b>.","ZIP 94704 has below-average per-capita household carbon emissions,<br>at approximately <b>5,221 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$51,696<\/b>.","ZIP 94710 has below-average per-capita household carbon emissions,<br>at approximately <b>14,866 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$116,313<\/b>.","ZIP 94705 has above-average per-capita household carbon emissions,<br>at approximately <b>18,413 kg CO₂e<\/b> per person.<br>The median household income in this area is <b>$157,221<\/b>."],"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-income_view">
+<div class="narrative">
+<p>Household carbon footprints rise with median income. While this chart is based on local estimates, this correlation is a well-documented phenomenon across the United States.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-income_view">
+<div class="narrative">
+<p>Financial affluence removes the economic constraints on consumption. With more income, people can “afford” more emissions, buying larger homes, more vehicles, and higher volumes of discretionary goods.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-income_view">
+<div class="narrative">
+<p><strong>Validating the Data</strong><br>
+Research from the <a href="https://news.umich.edu/homes-of-wealthy-americans-have-carbon-footprints-25-higher-than-lower-income-residences/" target="_blank" rel="noopener">University of Michigan</a> confirms this pattern, finding that higher-income households in the U.S. have carbon footprints roughly 25% higher than lower-income residences.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-income_view" class="sticky">
+<h2 id="which-households-have-a-higher-carbon-footprint" class="anchored">Which households have a higher carbon footprint?</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-18f10893124c4ce9a124" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-18f10893124c4ce9a124">{"x":{"visdat":{"38ce9557b4525d":["function () ","plotlyVisDat"]},"cur_data":"38ce9557b4525d","attrs":{"38ce9557b4525d":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"markers","hoverinfo":"text","text":{},"marker":{"size":14,"color":{},"colorscale":[["0","#2EC4B6"],["0.33","#FFD166"],["0.66","#EF476F"],["1","#8338EC"]],"showscale":false,"opacity":0.90000000000000002,"line":{"color":"white","width":1.6000000000000001}},"inherit":true},"38ce9557b4525d.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","line":{"color":"rgba(0,0,0,0.45)","width":1.25,"dash":"dot"},"hoverinfo":"skip","showlegend":false,"inherit":true}},"layout":{"margin":{"b":60,"l":60,"t":70,"r":40},"title":{"x":0.5,"xanchor":"center"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Median Household Income ($)","tickformat":"$,","zeroline":false,"showgrid":false,"ticks":"outside","linecolor":"#DDDDDD"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Per-capita Emissions (tCO₂e)","tickformat":",","zeroline":false,"showgrid":false,"ticks":"outside","linecolor":"#DDDDDD"},"font":{"family":"Inter, Helvetica, Arial, sans-serif","color":"#222222"},"plot_bgcolor":"white","paper_bgcolor":"white","hoverlabel":{"bgcolor":"rgba(255,255,255,0.96)","bordercolor":"#CCCCCC","font":{"size":12,"color":"#222222"},"align":"left"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"x":[186579,84965,125410,99901,218950,98873,51696,116313,157221],"y":[22295.58022254684,11277.691380983608,14670.487050335571,12607.987980944912,23852.342550381036,12979.543596817948,5220.5954871300219,14866.218411167514,18413.370672208439],"type":"scatter","mode":"markers","hoverinfo":["text","text","text","text","text","text","text","text","text"],"text":["<b>ZIP 94707<\/b><br>Median income: <b>$186,579<\/b><br>Per-capita emissions: <b>22,296 tCO₂e<\/b>","<b>ZIP 94709<\/b><br>Median income: <b>$84,965<\/b><br>Per-capita emissions: <b>11,278 tCO₂e<\/b>","<b>ZIP 94706<\/b><br>Median income: <b>$125,410<\/b><br>Per-capita emissions: <b>14,670 tCO₂e<\/b>","<b>ZIP 94703<\/b><br>Median income: <b>$99,901<\/b><br>Per-capita emissions: <b>12,608 tCO₂e<\/b>","<b>ZIP 94708<\/b><br>Median income: <b>$218,950<\/b><br>Per-capita emissions: <b>23,852 tCO₂e<\/b>","<b>ZIP 94702<\/b><br>Median income: <b>$98,873<\/b><br>Per-capita emissions: <b>12,980 tCO₂e<\/b>","<b>ZIP 94704<\/b><br>Median income: <b>$51,696<\/b><br>Per-capita emissions: <b>5,221 tCO₂e<\/b>","<b>ZIP 94710<\/b><br>Median income: <b>$116,313<\/b><br>Per-capita emissions: <b>14,866 tCO₂e<\/b>","<b>ZIP 94705<\/b><br>Median income: <b>$157,221<\/b><br>Per-capita emissions: <b>18,413 tCO₂e<\/b>"],"marker":{"color":[22295.58022254684,11277.691380983608,14670.487050335571,12607.987980944912,23852.342550381036,12979.543596817948,5220.5954871300219,14866.218411167514,18413.370672208439],"size":14,"colorscale":[["0","#2EC4B6"],["0.33","#FFD166"],["0.66","#EF476F"],["1","#8338EC"]],"showscale":false,"opacity":0.90000000000000002,"line":{"color":"white","width":1.6000000000000001}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[51696,84965,98873,99901,116313,125410,157221,186579,218950],"y":[7059.4261210000714,10641.99558122634,12139.677388699567,12250.37748203308,14017.702318404279,14997.311996473303,18422.876849617602,21584.290604564329,25070.159010497315],"type":"scatter","mode":"lines","line":{"color":"rgba(0,0,0,0.45)","width":1.25,"dash":"dot"},"hoverinfo":["skip","skip","skip","skip","skip","skip","skip","skip","skip"],"showlegend":false,"marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cr-section sticky cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-bar_chart_full">
+<div class="narrative">
+<p><strong>Anatomy of the Gap</strong><br>
+To understand why emissions differ among ZIP codes, it is helpful to break down each neighborhoods overall carbon footprint by sector. This chart shows how each ZIP code deviates from the Berkeley average (the center line). Bars to the right emit more than average; bars to the left emit less.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-bar_chart_full">
+<div class="narrative">
+<p><strong>This distribution is lopsided.</strong> A few neighborhoods sit at the extremes, pulling the citywide “average” far up or far down. As a result, average category-wise emissions do not describe a typical neighborhood in Berkeley. In reality, these averages are heavily influenced by outliers.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-bar_chart_full">
+<div class="narrative">
+<p><strong>Two sectors dominate the gap.</strong> The high-emitting ZIPs are not slightly above average across all categories. The biggest departures from average are disproportionately Housing and Transportation. Those segments expand dramatically in the highest-emitting ZIPs relative to others.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-bar_chart_full">
+<div class="narrative">
+<p><strong>Results points to structure, not just virtue.</strong> While individual consumption choices influence a significant proportion of emissions, housing and transportation account for the overwhelming majority. These categories are shaped by Berkeley’s built environment: home size and energy systems, street design, transit access, and car dependence.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-bar_chart_full" class="sticky">
+<h2 id="where-are-the-differences-coming-from" class="anchored">Where are the differences coming from?</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-88ec0014e6a5f294501f" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-88ec0014e6a5f294501f">{"x":{"visdat":{"38ce956dd8c771":["function () ","plotlyVisDat"]},"cur_data":"38ce956dd8c771","attrs":{"38ce956dd8c771":{"x":{},"y":{},"orientation":"h","hoverinfo":"text","text":{},"textposition":"none","color":{},"colors":["#D73027","#1F78B4","#33A02C","#FF7F00","#6A3D9A"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"barmode":"relative","hovermode":"closest","title":{"x":0.5,"xanchor":"center"},"xaxis":{"domain":[0,1],"automargin":true,"title":"Deviation from Berkeley average (kg tCO₂e per capita)","zeroline":true,"zerolinecolor":"#BBBBBB","zerolinewidth":1,"showgrid":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"","tickfont":{"size":11},"type":"category","categoryorder":"array","categoryarray":["94704","94709","94703","94702","94706","94710","94705","94707","94708"]},"legend":{"x":0.97999999999999998,"y":0.29999999999999999,"xanchor":"right","yanchor":"top","bgcolor":"rgba(255,255,255,0.9)","bordercolor":"#DDDDDD","borderwidth":1},"font":{"family":"Inter, Helvetica, Arial, sans-serif","color":"#222222"},"hoverlabel":{"bgcolor":"#2B2B2B","bordercolor":"#2B2B2B","font":{"size":12,"color":"#FFFFFF"},"align":"left"},"showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"x":[-427.07356389399001,-499.08652895228397,-1924.3279833399254,619.03271508932858,-69.527319270273892,1369.9759310677855,1719.1182885814542,-756.91765430100213,-31.19388498109447],"y":["94702","94703","94704","94705","94706","94707","94708","94709","94710"],"orientation":"h","hoverinfo":["text","text","text","text","text","text","text","text","text"],"text":["<b>Food<\/b><br>-427 kg CO₂e","<b>Food<\/b><br>-499 kg CO₂e","<b>Food<\/b><br>-1,924 kg CO₂e","<b>Food<\/b><br>619 kg CO₂e","<b>Food<\/b><br>-70 kg CO₂e","<b>Food<\/b><br>1,370 kg CO₂e","<b>Food<\/b><br>1,719 kg CO₂e","<b>Food<\/b><br>-757 kg CO₂e","<b>Food<\/b><br>-31 kg CO₂e"],"textposition":["none","none","none","none","none","none","none","none","none"],"type":"bar","name":"Food","marker":{"color":"rgba(51,160,44,1)","line":{"color":"rgba(51,160,44,1)"}},"textfont":{"color":"rgba(51,160,44,1)"},"error_y":{"color":"rgba(51,160,44,1)"},"error_x":{"color":"rgba(51,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-350.20826806393097,-402.66884077139321,-1454.7002704135784,501.94333730827111,-77.280525239875715,1067.9876458858103,1354.6114618185593,-590.49569232033377,-49.188848203530142],"y":["94702","94703","94704","94705","94706","94707","94708","94709","94710"],"orientation":"h","hoverinfo":["text","text","text","text","text","text","text","text","text"],"text":["<b>Goods<\/b><br>-350 kg CO₂e","<b>Goods<\/b><br>-403 kg CO₂e","<b>Goods<\/b><br>-1,455 kg CO₂e","<b>Goods<\/b><br>502 kg CO₂e","<b>Goods<\/b><br>-77 kg CO₂e","<b>Goods<\/b><br>1,068 kg CO₂e","<b>Goods<\/b><br>1,355 kg CO₂e","<b>Goods<\/b><br>-590 kg CO₂e","<b>Goods<\/b><br>-49 kg CO₂e"],"textposition":["none","none","none","none","none","none","none","none","none"],"type":"bar","name":"Goods","marker":{"color":"rgba(255,127,0,1)","line":{"color":"rgba(255,127,0,1)"}},"textfont":{"color":"rgba(255,127,0,1)"},"error_y":{"color":"rgba(255,127,0,1)"},"error_x":{"color":"rgba(255,127,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-566.35533332179602,-659.84584936238753,-2528.5433664362372,859.73292434833365,-132.9551165626558,1848.9754541972861,2257.1648648040709,-994.57397700809179,-83.599600658521013],"y":["94702","94703","94704","94705","94706","94707","94708","94709","94710"],"orientation":"h","hoverinfo":["text","text","text","text","text","text","text","text","text"],"text":["<b>Housing<\/b><br>-566 kg CO₂e","<b>Housing<\/b><br>-660 kg CO₂e","<b>Housing<\/b><br>-2,529 kg CO₂e","<b>Housing<\/b><br>860 kg CO₂e","<b>Housing<\/b><br>-133 kg CO₂e","<b>Housing<\/b><br>1,849 kg CO₂e","<b>Housing<\/b><br>2,257 kg CO₂e","<b>Housing<\/b><br>-995 kg CO₂e","<b>Housing<\/b><br>-84 kg CO₂e"],"textposition":["none","none","none","none","none","none","none","none","none"],"type":"bar","name":"Housing","marker":{"color":"rgba(215,48,39,1)","line":{"color":"rgba(215,48,39,1)"}},"textfont":{"color":"rgba(215,48,39,1)"},"error_y":{"color":"rgba(215,48,39,1)"},"error_x":{"color":"rgba(215,48,39,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-257.90953324207226,-306.27914385766803,-1265.4090228726427,407.88908054403328,-56.524610207497517,904.51286071111917,1084.4734387736953,-479.45894735003981,-31.294122498927663],"y":["94702","94703","94704","94705","94706","94707","94708","94709","94710"],"orientation":"h","hoverinfo":["text","text","text","text","text","text","text","text","text"],"text":["<b>Services<\/b><br>-258 kg CO₂e","<b>Services<\/b><br>-306 kg CO₂e","<b>Services<\/b><br>-1,265 kg CO₂e","<b>Services<\/b><br>408 kg CO₂e","<b>Services<\/b><br>-57 kg CO₂e","<b>Services<\/b><br>905 kg CO₂e","<b>Services<\/b><br>1,084 kg CO₂e","<b>Services<\/b><br>-479 kg CO₂e","<b>Services<\/b><br>-31 kg CO₂e"],"textposition":["none","none","none","none","none","none","none","none","none"],"type":"bar","name":"Services","marker":{"color":"rgba(106,61,154,1)","line":{"color":"rgba(106,61,154,1)"}},"textfont":{"color":"rgba(106,61,154,1)"},"error_y":{"color":"rgba(106,61,154,1)"},"error_x":{"color":"rgba(106,61,154,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-550.44496605091808,-655.66691750200926,-2737.9591311982485,893.23735352781659,-124.76063977478134,1972.5930692941847,2305.4392350126009,-1032.3976094275799,-70.040393881066848],"y":["94702","94703","94704","94705","94706","94707","94708","94709","94710"],"orientation":"h","hoverinfo":["text","text","text","text","text","text","text","text","text"],"text":["<b>Transportation<\/b><br>-550 kg CO₂e","<b>Transportation<\/b><br>-656 kg CO₂e","<b>Transportation<\/b><br>-2,738 kg CO₂e","<b>Transportation<\/b><br>893 kg CO₂e","<b>Transportation<\/b><br>-125 kg CO₂e","<b>Transportation<\/b><br>1,973 kg CO₂e","<b>Transportation<\/b><br>2,305 kg CO₂e","<b>Transportation<\/b><br>-1,032 kg CO₂e","<b>Transportation<\/b><br>-70 kg CO₂e"],"textposition":["none","none","none","none","none","none","none","none","none"],"type":"bar","name":"Transportation","marker":{"color":"rgba(31,120,180,1)","line":{"color":"rgba(31,120,180,1)"}},"textfont":{"color":"rgba(31,120,180,1)"},"error_y":{"color":"rgba(31,120,180,1)"},"error_x":{"color":"rgba(31,120,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section class="fullframe" style="min-height:100vh; display:flex; align-items:center; width:100%;">
+  <div style="max-width:70ch; width:100%; margin:0 auto; padding:0 8vw; text-align:center;">
+    
+    <h2 class="anchored">From Patterns to Policy</h2>
+    
+    <p>
+      The data reveals that Berkeley's emissions profile is defined by extremes. A handful of wealthy neighborhoods skew the citywide average significantly upward, 
+      driven largely by disparities in <strong style="color: #D73027;">Housing</strong> and <strong style="color: #1F78B4;">Transportation</strong>.
+    </p>
+
+    <p class="thesis-text" style="margin-top: 2rem;">
+      This suggests that high carbon footprints are not solely a result of personal virtue or individual consumer choices, but also of the <strong>built environment</strong>.
+    </p>
+    
+    <p>
+      Large, older homes and car-dependent infrastructure lock residents into higher emissions, while density and transit access allow others to live 
+      low-carbon lifestyles by default.
+    </p>
+    
+  </div>
+</section>
+
+<section class="fullframe" style="min-height:100vh; display:flex; align-items:center; width:100%;">
+  <div style="max-width:70ch; width:100%; margin:0 auto; padding:0 8vw; text-align:center;">
+    
+    <h2 class="anchored">Building a Low-Carbon City</h2>
+    <p>
+      Closing this gap requires decoupling well-being from high-emitting lifestyles, a goal central to Berkeley's evolving climate strategy. The city’s current roadmap is already advancing specific measures to address these structural inefficiencies, focusing on policy levers that guide sustainable choices and transform the built environment, 
+    </p>
+
+    <div class="policy-grid" style="margin-top: 3rem; text-align: left;">
+      
+      <div class="policy-item" style="border-left-color: #1F78B4;">
+        <div>
+          <strong>Transit-Oriented Development</strong>
+          <span style="color:#555; font-size: 0.95rem; display:block; margin-top:0.2rem;">Prioritize dense, multi-family housing near BART and bus lines to reduce reliance on private vehicles.</span>
+        </div>
+      </div>
+
+      <div class="policy-item" style="border-left-color: #2EC4B6;">
+        <div>
+          <strong>Complete Streets</strong>
+          <span style="color:#555; font-size: 0.95rem; display:block; margin-top:0.2rem;">Redesign roads to prioritize safety for pedestrians, cyclists, and transit users over high-speed car traffic.</span>
+        </div>
+      </div>
+
+      <div class="policy-item" style="border-left-color: #D73027;">
+        <div>
+          <strong>Electrification</strong>
+          <span style="color:#555; font-size: 0.95rem; display:block; margin-top:0.2rem;">Accelerate the transition from gas to electric appliances to decarbonize the existing housing stock.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="fullframe" style="min-height:100vh; display:flex; flex-direction:column; width:100%;">
+  
+  <div style="flex-grow:1; display:flex; align-items:center; justify-content:center; width:100%;">
+    <div style="max-width:80ch; padding:0 8vw; text-align:center;">
+      <h2 class="closing-statement anchored">
+        Berkeley has the data. The path forward is to continue building a city where the low-carbon choice is the <span style="color:#1F78B4;">easy</span>, <span style="color:#33A02C;">affordable</span>, and <span style="color:#E31A1C;">accessible</span> choice for everyone.
+      </h2>
+    </div>
+  </div>
+
+  <div class="footer" style="padding: 2rem 2rem 4rem 2rem; text-align:center; font-family:sans-serif; color:#666; font-size: 0.9rem; border-top: 1px solid #eee; background-color: white;">
+     </div>
+
+</section>
+
+  <div class="footer" style="padding: 2rem 2rem 4rem 2rem; text-align:center; font-family:sans-serif; color:#666; font-size: 0.9rem; border-top: 1px solid #eee; background-color: white;">
+    
+    <p style="margin-bottom: 0.5rem;">
+      <strong>Designed &amp; Developed by Vaidehi Srinivasan</strong>
+    </p>
+    
+    <p style="margin-bottom: 1.5rem;">
+      <a href="YOUR_GITHUB_URL_HERE" target="_blank" style="color:inherit; text-decoration:underline; font-size: 0.85rem;">View Source Code on GitHub</a>
+    </p>
+    
+    <p style="margin-bottom: 1.5rem; font-size: 0.85rem;">
+      Built with <a href="https://quarto.org/" target="_blank" style="color:inherit; text-decoration:underline;">Quarto</a>, 
+      <a href="https://closeread.netlify.app/" target="_blank" style="color:inherit; text-decoration:underline;">Closeread</a>, 
+      and R.
+    </p>
+
+    <p style="font-size: 0.8rem; opacity: 0.8; line-height: 1.5;">
+      <strong>Data Sources</strong><br>
+      <a href="https://coolclimate.org/inventory" target="_blank" style="color:inherit; text-decoration:none; border-bottom:1px dotted #999;">UC Berkeley CoolClimate Network</a> • 
+      <a href="https://www.census.gov/programs-surveys/acs" target="_blank" style="color:inherit; text-decoration:none; border-bottom:1px dotted #999;">US Census Bureau (ACS)</a> • 
+      <a href="https://www.bls.gov/cex/tables.htm?" target="_blank" style="color:inherit; text-decoration:none; border-bottom:1px dotted #999;">Bureau of Labor Statistics</a><br>
+      <a href="https://berkeleyca.gov/your-government/our-work/adopted-plans/berkeley-climate-action-plan" target="_blank" style="color:inherit; text-decoration:none; border-bottom:1px dotted #999;">City of Berkeley CAP</a> • 
+      <a href="https://css.umich.edu/publications/factsheets/sustainability-indicators/carbon-footprint-factsheet#references" target="_blank" style="color:inherit; text-decoration:none; border-bottom:1px dotted #999;">Center for Sustainable Systems</a>
+    </p>
+  </div>
+
+
+
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+  tabsets.forEach(function(tabset) {
+    const tabby = new Tabby('#' + tabset.id);
+  });
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'light-border',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+
+
+
+
+</body></html>

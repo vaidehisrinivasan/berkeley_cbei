@@ -1,0 +1,348 @@
+---
+title: "Berkeley ZIP-Level CBEI Data Cleaning"
+format: html
+runtime: shiny
+execute:
+  echo: false
+  warning: false
+  message: false
+
+---
+
+
+```{r}
+#Install the necessary packages 
+library(tidyverse)
+library(readxl)
+library(tidycensus)
+library(janitor)
+library(here)
+library(readr)
+library(sf)
+library(tigris)
+library(plotly)
+library(scales)
+library(leaflet)
+library(shiny)
+library(sass)
+library(ggplot2)
+
+
+```
+
+
+
+
+```{r}
+# Set census API key
+
+#Retrieve and clean the required metrics for Berkeley, CA: incomes, total population, households. Use the GEOID/ ZTCA to estimate zipcodes. 
+
+berkeley_zips <- c(
+  "94702","94703","94704","94705","94706",
+  "94707","94708","94709","94710"
+)
+
+raw_incomes <- get_acs(
+  geography = "zcta",
+  variables = "B19013_001", # Median Household Income 
+  year = 2022,
+  survey = "acs5")
+  
+berkeley_incomes <- raw_incomes %>%
+  filter(GEOID %in% berkeley_zips) %>%
+  select(
+    zip = GEOID,
+    median_household_income = estimate,
+    income_moe = moe
+  )
+
+raw_populations <- get_acs(
+  geography = "zcta",
+  variables = "B01003_001",  # Total population
+  year = 2022,
+  survey = "acs5"
+)
+
+berkeley_populations <- raw_populations %>%
+  filter(GEOID %in% berkeley_zips) %>% 
+  select(
+    zip = GEOID,
+    population = estimate
+  )
+
+raw_households <- get_acs(
+  geography = "zcta",
+  variables = "B11001_001",  # Total households
+  year = 2022,
+  survey = "acs5"
+)
+
+berkeley_households <- raw_households %>%
+  filter(GEOID %in% berkeley_zips) %>%
+  transmute(zip = GEOID, households = estimate)
+
+
+```
+
+```{r}
+# Creating a table of income, population, households, and population proportion 
+
+
+berkeley <- berkeley_incomes %>%
+  left_join(berkeley_populations, by = "zip") %>%
+  left_join(berkeley_households, by = "zip") %>%
+  mutate(population_prop = population / sum(population, na.rm = TRUE))
+
+names(berkeley)
+
+
+```
+
+```{r}
+
+# Use expenditure by median income data from the BLS to estimate the category-wise expenditure in each zip 
+
+bls_data <- read_excel("/home/vsyv2023/R/EDL_Project/data/BLS_DATA_CLEAN.xlsx") 
+
+```
+
+
+```{r}
+
+# Classify each zip by their median income to create "income_groups" matching the BLS data. This is done to *estimate* the category-wise expenditure for each group. 
+
+berkeley <- berkeley %>%
+  mutate(income_group = case_when(
+    median_household_income < 15000 ~ "Less than $15,000",
+    median_household_income < 30000 ~ "$15,000 to $29,999",
+    median_household_income < 40000 ~ "$30,000 to $39,999",
+    median_household_income < 50000 ~ "$40,000 to $49,999",
+    median_household_income < 70000 ~ "$50,000 to $69,999",
+    median_household_income < 100000 ~ "$70,000 to $99,999",
+    median_household_income < 150000 ~ "$100,000 to $149,999",
+    median_household_income < 200000 ~ "$150,000 to $199,999",
+    TRUE ~ "$200,000 and more"
+  ))
+
+```
+
+```{r}
+
+# Create a clean table of each zipcode's important metrics and traits 
+
+berkeley_zip <- berkeley %>%
+  select(
+    zip,
+    median_household_income,
+    income_moe,
+    population,
+    population_prop,
+    income_group,
+    households
+  ) %>%
+  distinct()
+
+
+bls_berkeley <- bls_data %>%
+  semi_join(berkeley_zip, by = "income_group")
+
+berkeley <- berkeley_zip %>%
+  left_join(bls_berkeley, by = "income_group", relationship = "many-to-many")
+
+
+```
+
+```{r}
+
+# Pull category-wise carbon intensity estimates from CoolClimate and CSS 
+
+category_intensity <- tibble(
+  category = c("Food", "Transportation", "Housing", "Goods", "Services"),
+  kg_co2e_per_dollar = c(0.45, 0.55, 0.30, 0.40, 0.20)
+)
+```
+
+```{r}
+
+# Calculate each zipcode's category-wise emissions and add these to a table
+
+berkeley <- berkeley %>%
+  left_join(category_intensity, by = "category") %>%
+  mutate(
+    expenditure_share = as.numeric(expenditure_share),
+    households = as.numeric(households),
+    expenditure_est = median_household_income * expenditure_share * households,
+    emissions_kg = expenditure_est * kg_co2e_per_dollar
+  )
+
+```
+
+```{r}
+
+# Emissions for 5 broad categories 
+
+berkeley_emissions <- berkeley %>% 
+  group_by(zip, category) %>%
+  summarise(
+    emissions = sum(emissions_kg),
+    .groups = "drop"
+  )
+
+# Emissions for 26 subcategories 
+
+berkeley_emissions_26 <- berkeley %>% #Emissions for 26 subcategories 
+  group_by(zip, category, `sub-category`) %>%
+  summarise(
+    emissions = sum(emissions_kg),
+    .groups = "drop"
+  )
+
+berkeley_emissions_26
+
+
+```
+
+
+
+```{r}
+
+# Create a clean table to use for the final dasboard 
+
+berkeley_emissions_dash <- berkeley %>%
+  group_by(zip, category) %>%
+  summarise(emissions_total = sum(emissions_kg), .groups = "drop") %>%
+  left_join(berkeley_zip %>% select(zip, population), by = "zip") %>%
+  mutate(emissions_pc = emissions_total / population)
+
+berkeley_emissions_dash
+
+```
+```{r}
+# Calculating national average expenditure breakup 
+
+us_category_shares_2022 <- tibble(
+  category = c("Housing", "Transportation", "Food", "Goods", "Services"),
+  us_share_pct = c(33.3, 16.8, 12.8, 7.0, 17.1)
+)
+
+
+```
+
+
+
+
+
+```{r}
+
+# FINAL DATA PREP & SAVE FOR DASHBOARD 
+
+library(tigris)
+library(sf)
+
+# 1. Prepare Map Data (With Income!)
+# We join the 'zip_totals' to the 'berkeley_zip' data to get Income.
+zip_summary <- berkeley_emissions_dash %>%
+  group_by(zip) %>%
+  summarise(
+    emissions_total = sum(emissions_total),
+    population = first(population)
+  ) %>%
+  mutate(emissions_pc = emissions_total / population) %>%
+  # JOIN INCOME HERE
+  left_join(berkeley_zip %>% select(zip, median_household_income, income_group), by = "zip")
+
+# 2. Download and Join Shapes
+berkeley_shapes <- zctas(cb = TRUE, starts_with = "947", year = 2020) %>%
+  filter(ZCTA5CE20 %in% berkeley_zip$zip) %>%
+  left_join(zip_summary, by = c("ZCTA5CE20" = "zip")) %>%
+  st_transform(4326)
+
+# 3. Prepare Bar Chart Data (Categories)
+berkeley_categories <- berkeley_emissions_dash %>%
+  filter(zip %in% berkeley_shapes$ZCTA5CE20) %>%
+  mutate(emissions_per_capita = emissions_total / population)
+
+# 4. Prepare "Receipt" Data (Sub-categories)
+# Aggregated for the whole city to show the "Top Drivers"
+city_receipt <- berkeley_emissions_26 %>%
+  group_by(category, `sub-category`) %>%
+  summarise(total_emissions = sum(emissions), .groups = "drop") %>%
+  arrange(desc(total_emissions))
+
+
+```
+
+
+```{r}
+# Citywide emissions shares by category (for explainer viz)
+berkeley_category_shares <- berkeley_emissions_dash %>%
+  group_by(category) %>%
+  summarise(
+    emissions_total = sum(emissions_total),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    share_pct = emissions_total / sum(emissions_total) * 100,
+    label = paste0(category, "\n", round(share_pct, 1), "%")
+  )
+
+# Adding national averages 
+
+us_spending_shares_2022 <- tibble(
+  category = c("Housing", "Transportation", "Food", "Goods", "Services"),
+  spending_share = c(33.3, 16.8, 12.8, 7.0, 17.1) / 100
+)
+
+us_emissions_shares_2022 <- us_spending_shares_2022 %>%
+  left_join(category_intensity, by = "category") %>%
+  mutate(
+    emissions_proxy = spending_share * kg_co2e_per_dollar
+  ) %>%
+  mutate(
+    us_emissions_share_pct = emissions_proxy / sum(emissions_proxy) * 100
+  ) %>%
+  select(category, us_emissions_share_pct)
+
+berkeley_category_shares <- berkeley_category_shares %>%
+  left_join(us_emissions_shares_2022, by = "category") %>%
+  mutate(
+    diff_pp = share_pct - us_emissions_share_pct,
+    direction = ifelse(diff_pp > 0, "higher", "lower"),
+    narrative = paste0(
+      category, " accounts for ",
+      round(share_pct, 1), "% of Berkeley’s household emissions, ",
+      round(abs(diff_pp), 1), " percentage points ",
+      direction,
+      " than the U.S. average household in 2022."
+    )
+  )
+
+us_emissions_shares_2022
+
+# DATA CLEANING = DONE 
+```
+
+```{r}
+ecodatalab_colors <- c(
+  "Housing"         = "#D73027",  # strong red
+  "Transportation" = "#1F78B4",  # vivid blue
+  "Food"           = "#33A02C",  # bright green
+  "Goods"          = "#FF7F00",  # orange
+  "Services"       = "#6A3D9A"   # purple
+)
+
+```
+
+
+
+```{r}
+# Save main data frames into a file 
+
+save(berkeley_emissions_dash, us_emissions_shares_2022, ecodatalab_colors, berkeley_category_shares, berkeley_shapes, berkeley_categories, city_receipt, file = "cleaned_data.RData")
+
+
+```
+
+
+
